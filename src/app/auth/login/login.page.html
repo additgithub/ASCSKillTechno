@@ -1,0 +1,35 @@
+<ion-content>
+    <div class="main-content">
+        <ion-img class="img-logo" src="assets/images/logo.png"></ion-img>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" style="padding: 0 0px;">
+            <ion-grid class="info-view">
+                <ion-row class="p-0">
+                    <ion-col size="12">
+                        <div class="form-group">
+                            <ion-label class="btittle">Welcome</ion-label>
+                        </div>
+                        <div>
+                            <ion-label class="subtxt">Sign in to continue !</ion-label>
+                        </div>
+                        <div class="form-group" style="margin-top:40px;">
+                            <ion-input type="tel" maxlength="10" placeholder="Mobile No" formControlName='mobile' class="form-control">
+                                <ion-label *ngIf="this.loginForm.get('mobile').value.length ==10" style="color:#2a6193;" (click)="GetOTP()">GET</ion-label>
+                            </ion-input>
+                        </div>
+                        <div class="form-group">
+                            <ion-input type="tel" maxlength="6" class="form-control" placeholder="OTP" formControlName='otp'></ion-input>
+                        </div>
+                        <div class="button_box" style="margin-top:30px;">
+                            <ion-button class="btn-blue" type="submit">Submit</ion-button>
+                        </div>
+                        <div class="form-group">
+                            <ion-label (click)="register()">Don't have an account?
+                                <a style="color:#2a6193;"><b>Sign up</b></a>
+                            </ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <ion-grid style="padding: 5px 8px !important;" no-padding class="header padding-0">
+                <ion-row style="align-items: center;">
+                    <ion-col size="9.7">
+                        <div class="page_had">
+                            <ion-buttons (click)="tools.backPage()" no-padding>
+                                <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
+                            </ion-buttons>
+                            <ion-label class="page_title">Brochure</ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="loginForm" style="padding: 0 0px;">
+        <ion-grid class="container">
+            <ion-row class="p-0">
+                <ion-col size="12" class="p-0">
+
+                    <div class="form-group">
+                        <ion-select okText="Ok" placeholder="Select Machine Name" class="custom_select" cancelText="Dismiss" formControlName='machine' (ionChange)="onChangeState($event.target.value)">
+                            <ion-select-option *ngFor="let item of MachineList" value="{{item.MachineID}}">{{item.MachineName}}</ion-select-option>
+                        </ion-select>
+                    </div>
+                    <div class="form-group fileuploads" *ngFor="let pdf of PDFList ;let i=index;" (click)="dPDF(pdf.SparePartsURL)">
+                        <ion-label>{{pdf.machinePdfID}}</ion-label>
+                        <ion-img class="menu-img" src="../../../assets/images/pdf.png"></ion-img>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="container empty-list-box" *ngIf="PDFList?.length == null">
+            <ion-row class="p-0">
+                <ion-col size="12" class="p-0">
+                    <ion-label class="empty-list">Please Select Machine</ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+
+
+</ion-content>

@@ -1,0 +1,240 @@
+.img-loc {
+    height: 20px;
+    position: absolute;
+}
+
+ion-label {
+    color: black;
+}
+
+.menu-img-1 {
+    padding: 10px;
+    width: 60px;
+}
+
+.logo-title {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.menu-img {
+    padding: 0px;
+    width: 8px;
+    margin-right: 15px;
+}
+
+.menu-img2 {
+    padding: 0px;
+    width: 15px;
+    margin-right: 15px;
+}
+
+.logo-title {
+    color: #000;
+    font-family: "Poppins";
+    font-size: 14px !important;
+}
+
+.menu {
+    --background: #ee6706 !important;
+}
+
+.lbl-style-m {
+    color: white !important;
+    font-size: 15px !important;
+}
+
+ion-item {
+    --background: #ee6706 !important;
+    border-bottom: 1px solid red;
+}
+
+ion-list {
+    background: #ee6706 !important;
+    --background: #ee6706 !important;
+}
+
+.tab-icon {
+    height: 30px !important;
+}
+
+.cotent-area {
+    height: calc(100vh - 56px);
+}
+
+ion-tab-button {
+    --padding-top: 0;
+    --padding-end: 0px;
+    --padding-bottom: 0;
+    --padding-start: 0px;
+    max-width: 100%;
+}
+
+.tab-nav-box ion-label {
+    width: 100%;
+    float: left;
+    color: #a3a3a3 !important;
+    font-size: 13px;
+}
+
+img {
+    border: none !important;
+}
+
+.tab-nav-box {
+    background: #fff !important;
+}
+
+.tab-nav-box.tab-selected {
+    background: #fbe1e5 !important;
+}
+
+.tab-nav-box.tab-selected ion-label {
+    color: #000 !important;
+}
+
+// .tab-nav-box.tab-selected img {
+//     padding: 2px;
+//       border: 1px solid #e31e24 !important;
+// }
+.user-info-block {
+    margin: 0px !important;
+    padding: 30px 0px 20px 0!important;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 10px !important;
+}
+
+.user-img {
+    width: 70px !important;
+    height: 70px !important;
+    overflow: hidden;
+    border-radius: 50% !important;
+    border: 2px solid #939393;
+    max-width: 70px !important;
+    background-color: transparent;
+    position: relative;
+}
+
+.user-info {
+    margin: 0px !important;
+    padding: 0px !important;
+    padding-top: 10px !important;
+    padding-left: 12px !important;
+}
+
+.menu-header-title {
+    color: #fff;
+    font-size: 18px !important;
+    margin-bottom: 4px !important;
+    font-family: 'Poppins-SemiBold';
+    display: block !important;
+    text-transform: capitalize;
+}
+
+.menu-header {
+    font-size: 16px;
+    color: #fff !important;
+    font-family: 'Poppins-SemiBold';
+}
+
+.icons-mail {
+    display: inline-block;
+    color: #fff !important;
+    position: absolute;
+    left: 0px;
+    top: 4px;
+}
+
+.card-block {
+    width: 100% !important;
+    height: 210px !important;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 12px 0px;
+    border-radius: 5px !important;
+    border: 1px solid #ccc;
+}
+
+.route-block {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    bottom: 0px;
+    line-height: 38px;
+}
+
+.route-count {
+    padding-left: 20px;
+    font-size: 17px;
+    margin-top: 6px;
+}
+
+.box-des {
+    font-size: 13px;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px !important;
+    margin: 10px;
+}
+
+.box-des-lbl {
+    font-size: 13px !important;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    white-space: nowrap;
+    width: auto;
+    margin: 0px;
+    font-weight: bold;
+    color: #a8a8a8;
+    text-decoration: underline;
+    line-height: 15px;
+}
+
+.user-img {
+    width: 70px !important;
+    height: 70px !important;
+    overflow: hidden;
+    border-radius: 50% !important;
+    border: 2px solid #939393;
+    max-width: 70px !important;
+    background-color: transparent;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.user-img ion-label {
+    background: #fff !important;
+    padding: 0px !important;
+    width: 58px;
+    height: 58px !important;
+    border-radius: 50%;
+    display: block;
+    margin: 4px auto !important;
+    color: #000 !important;
+    line-height: 58px;
+    font-size: 30px !important;
+    font-family: "Poppins-SemiBold";
+}
+
+ion-item {
+    --inner-border-width: 0 0 0px 0;
+}
+
+.btn-green {
+    width: 100%;
+}
+
+.siderbar_header {
+    padding: 0px 10px;
+    background: #ee6706;
+    padding-bottom: 10px;
+}

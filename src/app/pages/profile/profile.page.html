@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <ion-grid style="padding: 5px 8px !important; background-color: #ee6706 !important;" no-padding class="header padding-0">
+                <ion-row style="align-items: center;">
+                    <ion-col size="9.7">
+                        <div class="page_had">
+                            <ion-buttons (click)="tools.backPage()" no-padding>
+                                <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
+                            </ion-buttons>
+                            <ion-label class="page_title">My Profile</ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="container" style="margin-top: 30px;">
+        <ion-row class="p-0" class="pro_infobox">
+            <ion-col class="p-0" size="12">
+                <div class="pro_img">
+                    <ion-img *ngIf="!IsEdit" src="assets/images/profile.png"></ion-img>
+                    <ion-img *ngIf="IsEdit" src="assets/images/editProfile.png"></ion-img>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid class="container">
+        <ion-row class="forms_boxs">
+            <ion-col size="12" class="p-0">
+                <form [formGroup]="loginForm" (ngSubmit)="SaveProfile()" style="padding: 0 0px;">
+                    <ion-grid class="info-view">
+                        <ion-row class="p-0">
+                            <ion-col size="12">
+                                <div class="form-group">
+                                    <ion-input type="text" placeholder="First Name" [readonly]="!IsEdit?true:false" formControlName='fname' class="form-control"></ion-input>
+
+                                </div>
+                                <div class="form-group">
+                                    <ion-input type="text" placeholder="Last Name" [readonly]="!IsEdit?true:false" class="form-control" formControlName='lname'></ion-input>
+                                </div>
+
+                                <div class="form-group">
+                                    <ion-input type="tel" style="color: gray !important;" [readonly]="!IsEdit?true:false" maxlength="10" placeholder="Mobile No" class="form-control" formControlName='mobile'>
+                                        <!-- <ion-input type="tel" maxlength="10" placeholder="Mobile No" formControlName='mobile' class="form-control"> -->
+                                        <ion-label *ngIf="this.loginForm.get('mobile').value.length ==10" style="color:#2a6193;" (click)="GetOTP()">GET</ion-label>
+                                    </ion-input>
+                                </div>
+
+                                <div class="form-group" *ngIf="IsEdit">
+                                    <ion-input type="tel" maxlength="6" class="form-control" placeholder="OTP" formControlName='otp'></ion-input>
+                                </div>
+
+                                <div class="button_box" style="margin-top:30px;" *ngIf="!IsEdit">
+                                    <ion-button class="btn-blue" (click)="editProfile()">Edit Profile</ion-button>
+                                </div>
+                                <div class="button_box" style="margin-top:30px;" *ngIf="IsEdit">
+                                    <ion-button class="btn-blue" type="submit">Save Profile</ion-button>
+                                </div>
+
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

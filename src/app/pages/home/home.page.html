@@ -1,0 +1,133 @@
+<ion-menu side="start" menuId="first">
+    <ion-content class="menu" no-padding>
+        <ion-list no-padding>
+            <ion-item class="list-item" style="margin-bottom: 20px;">
+                <ion-label class="menu-header-title">MENU</ion-label>
+                <ion-img class="menu-img2" src="assets/images/close.png"></ion-img>
+            </ion-item>
+            <ion-item class="list-item" (click)="Dashboard()">
+                <ion-label class="lbl-style-m">Dashboard </ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+
+            <ion-item class="list-item" (click)="Profile()">
+                <ion-label class="lbl-style-m">Profile</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+
+            <ion-item class="list-item" (click)="Wallet()">
+                <ion-label class="lbl-style-m">Wallet</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+
+            <ion-item class="list-item" (click)="History()">
+                <ion-label class="lbl-style-m">History</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+            <ion-item class="list-item" (click)="Settings()">
+                <ion-label class="lbl-style-m">Settings</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+
+            <ion-item class="list-item" (click)="howtoplay()">
+                <ion-label class="lbl-style-m">How To Play</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+
+            <ion-item class="list-item" (click)="Reportissue()">
+                <ion-label class="lbl-style-m">Report Issue</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+            <ion-item class="list-item" (click)="faq()">
+                <ion-label class="lbl-style-m">FAQ's</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+            <ion-item class="list-item" (click)="Helpcenter()">
+                <ion-label class="lbl-style-m">Help Center</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+            <ion-item class="list-item" (click)="Aboutus()">
+                <ion-label class="lbl-style-m">About Us</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+
+            <ion-item class="list-item" (click)="logout(true)">
+                <ion-label class="lbl-style-m">Logout</ion-label>
+                <ion-img class="menu-img" src="assets/images/farrow.png"></ion-img>
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-router-outlet main>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>
+                <ion-grid style="padding: 5px 8px !important; background-color: #ee6706 !important;" no-padding class="header padding-0">
+                    <ion-row style="align-items: center;">
+                        <ion-col size="10.8">
+                            <div class="page_had">
+                                <ion-buttons (click)="openFirst()" no-padding>
+                                    <ion-img style="display: inline-block; width: 25px;margin-right: 5px;" class="img" src="assets/images/menu.png"></ion-img>
+                                </ion-buttons>
+                                <ion-label class="page_title">Dashbaord</ion-label>
+                            </div>
+                        </ion-col>
+                        <ion-col size="1.2">
+                            <ion-buttons no-padding (click)="Wallet()">
+                                <ion-img [class]="class_add" src="../../../assets/images/wallet.png"> </ion-img>
+                            </ion-buttons>
+                        </ion-col>
+
+                    </ion-row>
+                </ion-grid>
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content style="background: #ee6706">
+
+        <ion-tabs>
+            <ion-tab-bar slot="top">
+                <ion-tab-button tab="upcominggames">
+                    <ion-label>Upcoming Games</ion-label>
+                </ion-tab-button>
+
+                <ion-tab-button tab="mygames">
+                    <ion-label>My Games</ion-label>
+                    <!-- <div class="page_wapper">
+                        <ion-grid class="p-0 machine_lists" *ngFor="let machine of MachineList ; ngIf user.roleid==2;" (click)="productlist(machine.MachineID,machine.MachinePdf)">
+                            <ion-row class="p-0">
+                                <ion-col size="12" class="p-0">
+                                    <div class="img_box">
+                                        <ion-img class="ac_img" src="{{machine.MachinePic}}"></ion-img>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="box-des" style="align-items: center !important; border: none !important; ">
+                                <ion-col class="left_col">
+                                    <ion-label class="d-block">{{machine.MachineName}}</ion-label>
+                                </ion-col>
+                                <ion-col class="right_col">
+                                    <div class="action_buttion">
+
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+
+                        <ion-grid class="container empty-list-box" *ngIf="MachineList?.length == 0 && user.roleid==2">
+                            <ion-row class="p-0">
+                                <ion-col size="12" class="p-0">
+                                    <ion-label class="empty-list">No Data Available!</ion-label>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </div> -->
+                </ion-tab-button>
+            </ion-tab-bar>
+        </ion-tabs>
+
+    </ion-content>
+</ion-router-outlet>

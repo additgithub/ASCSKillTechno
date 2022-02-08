@@ -1,0 +1,38 @@
+<ion-content>
+    <ion-grid class="container mt-20" (click)="GameDetails('20')">
+        <!-- <ion-row class="box-des" (click)="inquirydetails(inq.InquiryHdrID)" *ngFor="let inq of InqList ;"> -->
+        <ion-label class="content d-block">Date 00-00-0000 (Weekly)</ion-label>
+        <ion-row class="box-des">
+            <ion-col>
+                <ion-row class="user-info-block">
+                    <ion-col size="2">
+                        <ion-img class="menu-img" src="assets/images/forcast.png"></ion-img>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-label class="btext">Forecasting Game</ion-label>
+                    </ion-col>
+                    <ion-col size="2">
+                        <ion-button>Join</ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-label class="subtxt">Entires Closing In :
+                            <a style="color:#2a6193;"><b>00:00:00</b></a>
+                        </ion-label>
+                    </ion-col>
+                </ion-row>
+
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+    <!-- <ion-grid class="container empty-list-box" *ngIf="InqList?.length == 0">
+        <ion-row class="p-0">
+            <ion-col size="12" class="p-0">
+                <ion-label class="empty-list">No Data Available!</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid> -->
+</ion-content>
