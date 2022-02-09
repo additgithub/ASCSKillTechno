@@ -238,3 +238,16 @@ ion-item {
     background: #ee6706;
     padding-bottom: 10px;
 }
+
+ion-tab-button {
+    --ripple-color: #ee6706;
+    --color: #000 !important;
+    color: #fff !important;
+    --color-selected: #000;
+}
+
+ion-tab-button.tab-selected {
+    --background: #ee6706 !important;
+    --color-selected: #fff !important;
+    --color: #fff !important;
+}

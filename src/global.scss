@@ -1242,3 +1242,21 @@ ion-label.subtxt {
     border-bottom: 1px solid gray;
     margin-bottom: 5px !important;
 }
+
+.chkbox {
+    margin: 0px !important;
+    --padding-start: 0px !important;
+    --min-height: auto !important;
+    --inner-padding-end: 0;
+    padding: 0px !important;
+    text-align: center !important;
+    max-width: 20px;
+    width: 100%;
+    margin: 0 auto !important;
+}
+
+.chkbox ion-checkbox {
+    margin: 0px auto !important;
+    --background-checked: #2a6193;
+    --border-color-checked: #2a6193;
+}

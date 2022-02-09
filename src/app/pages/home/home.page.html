@@ -88,7 +88,7 @@
 
     <ion-content style="background: #ee6706">
 
-        <ion-tabs>
+        <ion-tabs tabsHighlight="true">
             <ion-tab-bar slot="top">
                 <ion-tab-button tab="upcominggames">
                     <ion-label>Upcoming Games</ion-label>
@@ -96,35 +96,6 @@
 
                 <ion-tab-button tab="mygames">
                     <ion-label>My Games</ion-label>
-                    <!-- <div class="page_wapper">
-                        <ion-grid class="p-0 machine_lists" *ngFor="let machine of MachineList ; ngIf user.roleid==2;" (click)="productlist(machine.MachineID,machine.MachinePdf)">
-                            <ion-row class="p-0">
-                                <ion-col size="12" class="p-0">
-                                    <div class="img_box">
-                                        <ion-img class="ac_img" src="{{machine.MachinePic}}"></ion-img>
-                                    </div>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row class="box-des" style="align-items: center !important; border: none !important; ">
-                                <ion-col class="left_col">
-                                    <ion-label class="d-block">{{machine.MachineName}}</ion-label>
-                                </ion-col>
-                                <ion-col class="right_col">
-                                    <div class="action_buttion">
-
-                                    </div>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-
-                        <ion-grid class="container empty-list-box" *ngIf="MachineList?.length == 0 && user.roleid==2">
-                            <ion-row class="p-0">
-                                <ion-col size="12" class="p-0">
-                                    <ion-label class="empty-list">No Data Available!</ion-label>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </div> -->
                 </ion-tab-button>
             </ion-tab-bar>
         </ion-tabs>

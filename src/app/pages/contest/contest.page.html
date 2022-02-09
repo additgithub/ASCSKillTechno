@@ -1,0 +1,86 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <ion-grid style="padding: 5px 8px !important; background-color: #ee6706 !important;" no-padding class="header padding-0">
+                <ion-row style="align-items: center;">
+                    <ion-col size="9.7">
+                        <div class="page_had">
+
+                            <ion-buttons (click)="tools.backPage()" no-padding>
+                                <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
+                            </ion-buttons>
+                            <ion-label class="page_title">Game Name</ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="background: #fff">
+    <ion-grid class="container mt-20">
+        <ion-label class="btext" style="display: block; font-size: 20px !important;">Entire Closing In 00:00:00</ion-label>
+        <div class="form-group mt-20">
+            <ion-select okText="Ok" placeholder="Select Name" class="custom_select" cancelText="Dismiss">
+                <!-- <ion-select-option *ngFor="let item of MachineList" value="{{item.MachineID}}">{{item.MachineName}}</ion-select-option> -->
+                <ion-select-option></ion-select-option>
+            </ion-select>
+        </div>
+        <div class="form-group mt-10">
+            <ion-input type="text" placeholder="Enter Forecast Value" class="form-control"></ion-input>
+        </div>
+
+
+        <ion-row class="mt-20">
+            <ion-col>
+                <ion-checkbox style="vertical-align: middle;" [(ngModel)]="terms"></ion-checkbox>
+                <ion-label class="open-models" style="padding-left: 5px;vertical-align: middle;">Join All Contest</ion-label>
+            </ion-col>
+            <ion-col style="text-align: right;">
+                <ion-label>1 Contest Selected</ion-label>
+            </ion-col>
+        </ion-row>
+
+
+        <!-- <ion-row class="products_list box-des" *ngFor="let inq of AdminInqDetails ;"> -->
+        <ion-row class="box-des" style="margin-top: 20px !important;">
+            <ion-col>
+                <ion-row class="user-info-block">
+                    <ion-col size="9">
+                        <ion-label class="btext">Contest Fee : Rs 25.00</ion-label>
+                    </ion-col>
+                    <ion-col size="3">
+                        <!-- <ion-checkbox slot="start" [disabled]="this.defValue =='Full'" [(ngModel)]="item.isChecked" (ionChange)="changeItem(item)"></ion-checkbox> -->
+                        <ion-item class="chkbox">
+                            <ion-checkbox slot="end"></ion-checkbox>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="left_col" size="4">
+                        <ion-label class="subtxt d-block">Total Players</ion-label>
+                        <ion-label class="subtxt d-block">000</ion-label>
+                    </ion-col>
+                    <ion-col class="right_col" size="4">
+                        <ion-label class="subtxt d-block">Max Win Amt</ion-label>
+                        <ion-label class="subtxt d-block">000</ion-label>
+                    </ion-col>
+                    <ion-col class="right_col" size="4">
+                        <ion-label class="subtxt d-block">Max Winners</ion-label>
+                        <ion-label class="subtxt d-block">000</ion-label>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- <ion-grid class="container empty-list-box" *ngIf="AdminInqDetails?.length == 0">
+        <ion-row class="p-0">
+            <ion-col size="12" class="p-0">
+                <ion-label class="empty-list">No Data Available!</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid> -->
+</ion-content>

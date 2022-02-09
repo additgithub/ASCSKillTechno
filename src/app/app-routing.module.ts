@@ -40,6 +40,18 @@ const routes: Routes = [
     path: 'history',
     loadChildren: () => import('./pages/history/history.module').then(m => m.HistoryPageModule)
   },
+  {
+    path: 'settingscren',
+    loadChildren: () => import('./pages/settingscren/settingscren.module').then(m => m.SettingScrenPageModule)
+  },
+  {
+    path: 'reportissue',
+    loadChildren: () => import('./pages/reportissue/reportissue.module').then(m => m.ReportIssuePageModule)
+  },
+  {
+    path: 'contest',
+    loadChildren: () => import('./pages/contest/contest.module').then(m => m.ContestPageModule)
+  },
 
 
 

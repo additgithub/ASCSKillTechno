@@ -59,7 +59,7 @@ export class HomePage {
   }
   Settings() {
     this.menu.close();
-    this.router.navigateByUrl("home");
+    this.router.navigateByUrl("settingscren");
   }
   howtoplay() {
     this.menu.close();
@@ -67,7 +67,7 @@ export class HomePage {
   }
   Reportissue() {
     this.menu.close();
-    this.router.navigateByUrl("home");
+    this.router.navigateByUrl("reportissue");
   }
   faq() {
     this.menu.close();
@@ -141,5 +141,6 @@ export class HomePage {
       }
     });
   }
+  
 
 }

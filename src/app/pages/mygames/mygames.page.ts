@@ -24,8 +24,8 @@ export class MyGamesPage {
     //this.getMyInquiry();
   }
 
-  inquirydetails(inqID) {
-    this.router.navigateByUrl('inquirydetails/' + inqID);
+  itemClick() {
+    this.router.navigateByUrl('contest');
 
   }
   getMyInquiry() {

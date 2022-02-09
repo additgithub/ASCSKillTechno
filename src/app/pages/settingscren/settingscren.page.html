@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <ion-grid style="padding: 5px 8px !important; background-color: #ee6706 !important;" no-padding class="header padding-0">
+                <ion-row style="align-items: center;">
+                    <ion-col size="9.7">
+                        <div class="page_had">
+
+                            <ion-buttons (click)="tools.backPage()" no-padding>
+                                <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
+                            </ion-buttons>
+                            <ion-label class="page_title">Settings</ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="background: #fff">
+    <ion-grid class="container mt-20">
+        <ion-row class="products_list box-des mt-10">
+            <ion-col class="prod_content left_col">
+                <ion-label class="d-block f-15">Notification</ion-label>
+            </ion-col>
+            <ion-col class="prod_qty right_col">
+                <ion-toggle></ion-toggle>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
