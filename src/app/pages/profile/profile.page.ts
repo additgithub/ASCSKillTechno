@@ -5,7 +5,8 @@ import { Tools } from '../../shared/tools';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { PickerController } from '@ionic/angular';
+import { ActionSheetController, PickerController } from '@ionic/angular';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
 @Component({
@@ -22,9 +23,12 @@ export class ProfilePage {
 
 IsEdit=false;
 Selstatus = "";
+image1: any;
 
   constructor(public pickerCtrl: PickerController, public tools: Tools, public formBuilder: FormBuilder, private eventService: EventService,
-    private activatedRoute: ActivatedRoute, private router: Router, public apiService: ApiService) {
+    private activatedRoute: ActivatedRoute,public actionSheetController: ActionSheetController, 
+    private camera: Camera,
+    private router: Router, public apiService: ApiService) {
     this.user = this.apiService.getUserData();
 
     //this.from = this.activatedRoute.snapshot.paramMap.get('from');
@@ -130,4 +134,71 @@ Selstatus = "";
 
   isReadonly() {return true;}
 
+  onFileChange(event, isEdit=false) {
+    if (event.target.files && event.target.files.length > 0) {
+      
+      const file = event.target.files[0];
+     // this.imageName=file.name;
+
+      const fileSizeInKB = Math.round(file.size / 1024);
+      if (fileSizeInKB >= 5012) {
+          //this.toastr.error("Allow only 5 mb image size", "Error");
+          return;
+      }
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      if(isEdit){
+      //  this.isPostImageEdit = true;
+        //this.PEditControl.post_image.setValue(file);
+      }else{
+        //this.isPostImageAdd = true;
+        //this.control.post_image.setValue(file);
+       this.image1=file;
+        
+      }
+    }
+  }
+
+  async selectImage(type) {
+    const actionSheet = await this.actionSheetController.create({
+      header: "Select Image",
+      buttons: [{
+        text: 'Load from Library',
+        handler: () => {
+          if (type == '1') {
+            this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        }
+      },
+      {
+        text: 'Use Camera',
+        handler: () => {
+          if (type == '1') {
+            this.pickImage(this.camera.PictureSourceType.CAMERA);
+          }
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      }
+      ]
+    });
+    await actionSheet.present();
+  }
+  pickImage(sourceType) {
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: sourceType,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      console.log('User Image --> ', imageData);
+      this.image1 = imageData;
+    }, (err) => {
+      console.log(err);
+    });
+  }
 }

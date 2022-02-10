@@ -3,7 +3,7 @@
         <ion-title>
             <ion-grid style="padding: 5px 8px !important; background-color: #ee6706 !important;" no-padding class="header padding-0">
                 <ion-row style="align-items: center;">
-                    <ion-col size="9.7">
+                    <ion-col size="12">
                         <div class="page_had">
 
                             <ion-buttons (click)="tools.backPage()" no-padding>
@@ -22,11 +22,12 @@
 <ion-content style="background: #fff">
     <ion-row style="background: #ee6706; min-height: 250px !important;">
         <ion-col>
-            <ion-label class="content d-block">Available Amount</ion-label>
-            <ion-label class="btittle" style="color: #fff;">Rs 000000</ion-label>
-            <ion-input type="tel" placeholder="Enter" class="form-control"></ion-input>
-            <ion-button class="btn-blue mt-10" type="submit">Add Money</ion-button>
-
+            <ion-label class="text-center d-block f-15 mt-20" style="color: #fff;">Available Amount</ion-label>
+            <ion-label class="btittle d-block mt-10">Rs 000000</ion-label>
+            <div style="margin: 15px !important;">
+                <ion-input type="tel" placeholder="Enter Amount" class="form-control"></ion-input>
+                <ion-button class="btn-blue mt-20" type="submit">Add Money</ion-button>
+            </div>
         </ion-col>
     </ion-row>
     <ion-grid class="container mt-20">
@@ -34,16 +35,16 @@
         <ion-row class="box-des">
             <ion-col>
                 <ion-row>
-                    <ion-col size="2">
+                    <ion-col size="1.5" class="py-0">
                         <ion-img class="menu-img" src="assets/images/up.png"></ion-img>
                     </ion-col>
-                    <ion-col size="6" class="left_col">
-                        <ion-label class="subtxt d-block">Forecasting Game (Nifty)</ion-label>
-                        <ion-label class="subtxt d-block">00-00-0000 00:00 AM </ion-label>
+                    <ion-col size="7" class="left_col">
+                        <ion-label class="subtxt text-left d-block">Forecasting Game (Nifty)</ion-label>
+                        <ion-label class="subtxt text-left d-block">00-00-0000 00:00 AM </ion-label>
                     </ion-col>
-                    <ion-col size="4" class="right_col">
-                        <ion-label [ngClass]="{'greencolor' : Selstatus == 'Credit','radcolor' : Selstatus == 'Debit' }">{{Selstatus}}</ion-label>
-                        <ion-label class="btext d-block">Rs 0000</ion-label>
+                    <ion-col size="3.5" class="right_col">
+                        <ion-label class="btext text-right d-block" [ngClass]="{'greencolor' : Selstatus == 'Credit','radcolor' : Selstatus == 'Debit' }">{{Selstatus}}</ion-label>
+                        <ion-label class="btext text-right d-block">Rs 0000</ion-label>
                     </ion-col>
                 </ion-row>
             </ion-col>

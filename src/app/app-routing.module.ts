@@ -52,7 +52,22 @@ const routes: Routes = [
     path: 'contest',
     loadChildren: () => import('./pages/contest/contest.module').then(m => m.ContestPageModule)
   },
-
+  {
+    path: 'aboutus',
+    loadChildren: () => import('./pages/aboutus/aboutus.module').then(m => m.AboutUsPageModule)
+  },
+  {
+    path: 'howtoplay',
+    loadChildren: () => import('./pages/howtoplay/howtoplay.module').then(m => m.HowToPlayPageModule)
+  },
+  {
+    path: 'faqs',
+    loadChildren: () => import('./pages/faqs/faqs.module').then(m => m.FaqsPageModule)
+  },
+  {
+    path: 'helpcenter',
+    loadChildren: () => import('./pages/helpcenter/helpcenter.module').then(m => m.HelpCenterPageModule)
+  },
 
 
 
@@ -62,10 +77,7 @@ const routes: Routes = [
     path: 'brochure',
     loadChildren: () => import('./pages/brochure/brochure.module').then(m => m.BrochurePageModule)
   },
-  {
-    path: 'contactus',
-    loadChildren: () => import('./pages/contactus/contactus.module').then(m => m.ContactUsPageModule)
-  },
+ 
 
 
 ];

@@ -3,7 +3,7 @@
         <ion-list no-padding>
             <ion-item class="list-item" style="margin-bottom: 20px;">
                 <ion-label class="menu-header-title">MENU</ion-label>
-                <ion-img class="menu-img2" src="assets/images/close.png"></ion-img>
+                <ion-img class="menu-img2" src="assets/images/close.png" (click)="Dashboard()"></ion-img>
             </ion-item>
             <ion-item class="list-item" (click)="Dashboard()">
                 <ion-label class="lbl-style-m">Dashboard </ion-label>
@@ -64,7 +64,7 @@
     <ion-header>
         <ion-toolbar>
             <ion-title>
-                <ion-grid style="padding: 5px 8px !important; background-color: #ee6706 !important;" no-padding class="header padding-0">
+                <ion-grid style="padding: 5px 8px !important;margin: 0 !important; background-color: #ee6706 !important;" no-padding class="header padding-0">
                     <ion-row style="align-items: center;">
                         <ion-col size="10.8">
                             <div class="page_had">
@@ -86,9 +86,9 @@
         </ion-toolbar>
     </ion-header>
 
-    <ion-content style="background: #ee6706">
+    <ion-content>
 
-        <ion-tabs tabsHighlight="true">
+        <ion-tabs class="f-white">
             <ion-tab-bar slot="top">
                 <ion-tab-button tab="upcominggames">
                     <ion-label>Upcoming Games</ion-label>

@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../../shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
-import { ContactUsPage } from './contactus.page';
+import { HelpCenterPage } from './helpcenter.page';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ContactUsPage,
+    component: HelpCenterPage,
   }
 ];
 
@@ -17,7 +17,7 @@ const routes: Routes = [
   imports: [
     SharedModule,FormsModule,
     RouterModule.forChild(routes)  ],
-  declarations: [ContactUsPage]
+  declarations: [HelpCenterPage]
 })
 
-export class ContactUsPageModule {}
+export class HelpCenterPageModule {}

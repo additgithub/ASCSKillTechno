@@ -44,3 +44,27 @@ ion-label.btext {
     color: #2a6193;
     text-align: center !important;
 }
+
+ion-label {
+    color: #000;
+}
+
+ion-label.btittle {
+    font-size: 30px !important;
+    font-family: "Poppins-Bold";
+    color: white;
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right.btext {
+    text-align: right !important;
+}
+
+.py-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}

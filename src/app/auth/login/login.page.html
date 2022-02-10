@@ -5,15 +5,15 @@
             <ion-grid class="info-view">
                 <ion-row class="p-0">
                     <ion-col size="12">
-                        <div class="form-group">
+                        <div>
                             <ion-label class="btittle">Welcome</ion-label>
                         </div>
                         <div>
-                            <ion-label class="subtxt">Sign in to continue !</ion-label>
+                            <ion-label class="graytxt">Sign in to continue !</ion-label>
                         </div>
                         <div class="form-group" style="margin-top:40px;">
                             <ion-input type="tel" maxlength="10" placeholder="Mobile No" formControlName='mobile' class="form-control">
-                                <ion-label *ngIf="this.loginForm.get('mobile').value.length ==10" style="color:#2a6193;" (click)="GetOTP()">GET</ion-label>
+                                <ion-label *ngIf="this.loginForm.get('mobile').value.length ==10" style="color:#2a6193; margin-right: 10px;" (click)="GetOTP()">GET</ion-label>
                             </ion-input>
                         </div>
                         <div class="form-group">
@@ -22,8 +22,8 @@
                         <div class="button_box" style="margin-top:30px;">
                             <ion-button class="btn-blue" type="submit">Submit</ion-button>
                         </div>
-                        <div class="form-group">
-                            <ion-label (click)="register()">Don't have an account?
+                        <div class="text-center  mx-20 ">
+                            <ion-label (click)="register()" class="f-15">Don't have an account?
                                 <a style="color:#2a6193;"><b>Sign up</b></a>
                             </ion-label>
                         </div>

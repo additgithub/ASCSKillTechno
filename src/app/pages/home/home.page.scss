@@ -7,6 +7,12 @@ ion-label {
     color: black;
 }
 
+.f-white ion-label {
+    color: #f8f8f8;
+    font-weight: 400;
+    font-size: 15px !important;
+}
+
 .menu-img-1 {
     padding: 10px;
     width: 60px;
@@ -241,13 +247,21 @@ ion-item {
 
 ion-tab-button {
     --ripple-color: #ee6706;
-    --color: #000 !important;
+    --color: #fff !important;
     color: #fff !important;
-    --color-selected: #000;
+    --color-selected: #fff !important;
+    background: #ee6706 !important;
+    --background: #ee6706 !important;
 }
 
 ion-tab-button.tab-selected {
     --background: #ee6706 !important;
     --color-selected: #fff !important;
     --color: #fff !important;
+    border-bottom: 5px solid #fff;
+}
+
+ion-tab-button.tab-selected ion-label {
+    color: #fff !important;
+    font-weight: bold;
 }

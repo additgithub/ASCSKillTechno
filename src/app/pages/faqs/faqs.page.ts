@@ -9,11 +9,11 @@ import { PickerController } from '@ionic/angular';
 
 
 @Component({
-  selector: 'app-contactus',
-  templateUrl: 'contactus.page.html',
-  styleUrls: ['contactus.page.scss'],
+  selector: 'app-faqs',
+  templateUrl: 'faqs.page.html',
+  styleUrls: ['faqs.page.scss'],
 })
-export class ContactUsPage {
+export class FaqsPage {
 
   loginForm: FormGroup;
   terms=false;

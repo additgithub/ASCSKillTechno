@@ -38,6 +38,7 @@
         "@ionic-native/status-bar": "^5.36.0",
         "@ionic-super-tabs/angular": "^7.0.8",
         "@ionic/angular": "^5.5.2",
+        "cordova-ios": "6.2.0",
         "crypto-js": "^4.1.1",
         "events": "^3.3.0",
         "moment-timezone": "^0.5.34",
@@ -110,6 +111,8 @@
                 "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1"
             }
         },
-        "platforms": []
+        "platforms": [
+            "ios"
+        ]
     }
 }

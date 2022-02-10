@@ -1,6 +1,6 @@
 .box-des {
     font-size: 13px;
-    border: 1px solid #d5d5d5;
+    border: 1px solid #a3a3a3;
     border-radius: 5px !important;
     margin: 10px;
     padding: 5px;
@@ -25,7 +25,8 @@
 
 .menu-img {
     padding: 0px;
-    width: 40px;
+    width: 37px;
+    margin: 0 auto !important;
 }
 
 ion-label.subtxt {
@@ -33,4 +34,10 @@ ion-label.subtxt {
     font-family: "Poppins";
     color: black;
     text-align: center !important;
+}
+
+ion-button.btn {
+    min-height: 35px !important;
+    min-width: 65px !important;
+    font-size: 14px !important;
 }

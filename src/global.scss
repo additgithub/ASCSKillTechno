@@ -84,8 +84,8 @@ ion-content {
 }
 
 ion-toolbar {
-    box-shadow: 0 0 0 0;
-    --background: white !important;
+    // box-shadow: 0 0 0 0;
+    --background: #ee6706 !important;
     border: none;
     color: #fff !important;
 }
@@ -166,8 +166,8 @@ ion-list-header {
 }
 
 .info-view {
-    --background: #f6f6f6 !important;
-    background: #f6f6f6 !important;
+    // --background: #f6f6f6 !important;
+    // background: #f6f6f6 !important;
     width: 100%;
     margin-top: 260px;
     padding: 0px 20px;
@@ -531,7 +531,7 @@ table td:last-child {
 }
 
 .f-15 {
-    font-size: 13px !important;
+    font-size: 15px !important;
     line-height: 14px !important;
 }
 
@@ -855,7 +855,7 @@ img.back-btn {
 
 .page_had ion-label.page_title {
     flex: 0 0 100%;
-    max-width: calc(100% - 25px);
+    max-width: calc(100% - 55px);
     font-size: 20px !important;
     font-family: 'Poppins';
     color: white;
@@ -873,7 +873,7 @@ img.back-btn {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    padding: 8px 10px !important;
+    padding: 5px 10px !important;
 }
 
 .box-des .left_col {
@@ -1014,8 +1014,8 @@ cimg {
 }
 
 .form-control {
-    --background: #fff;
-    background: #fff;
+    --background: #f8f8f8;
+    background: #f8f8f8;
     --ion-background-color: transparent;
     --highlight-color-focused: black;
     --border-color: transparent;
@@ -1203,13 +1203,13 @@ cimg {
 }
 
 .graytxt {
-    font-size: 13px !important;
+    font-size: 15px !important;
     font-family: 'Poppins';
-    color: #9e9e9e !important;
+    color: #8d8d8d !important;
 }
 
 ion-label.btittle {
-    font-size: 20px !important;
+    font-size: 22px !important;
     font-family: "Poppins-Bold";
     color: black;
     text-align: center !important;
@@ -1238,9 +1238,10 @@ ion-label.subtxt {
 
 .user-info-block {
     margin: 0px !important;
-    padding: 5px 0px 5px 0!important;
+    padding: 0px 0px 5px 0!important;
     border-bottom: 1px solid gray;
-    margin-bottom: 5px !important;
+    margin-bottom: 8px !important;
+    align-items: center;
 }
 
 .chkbox {
@@ -1259,4 +1260,12 @@ ion-label.subtxt {
     margin: 0px auto !important;
     --background-checked: #2a6193;
     --border-color-checked: #2a6193;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mx-20 {
+    margin: 20px 0;
 }

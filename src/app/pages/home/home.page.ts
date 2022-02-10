@@ -63,7 +63,7 @@ export class HomePage {
   }
   howtoplay() {
     this.menu.close();
-    this.router.navigateByUrl("home");
+    this.router.navigateByUrl("howtoplay");
   }
   Reportissue() {
     this.menu.close();
@@ -71,15 +71,15 @@ export class HomePage {
   }
   faq() {
     this.menu.close();
-    this.router.navigateByUrl("home");
+    this.router.navigateByUrl("faqs");
   }
   Helpcenter() {
     this.menu.close();
-    this.router.navigateByUrl("home");
+    this.router.navigateByUrl("helpcenter");
   }
   Aboutus() {
     this.menu.close();
-    this.router.navigateByUrl("home");
+    this.router.navigateByUrl("aboutus");
   }
   logout(isLogin) {
     this.menu.close();
