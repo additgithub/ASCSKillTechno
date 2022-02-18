@@ -16,11 +16,11 @@
                                 <ion-label *ngIf="this.loginForm.get('mobile').value.length ==10" style="color:#2a6193; margin-right: 10px;" (click)="GetOTP()">GET</ion-label>
                             </ion-input>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" *ngIf="getOTP">
                             <ion-input type="tel" maxlength="6" class="form-control" placeholder="OTP" formControlName='otp'></ion-input>
                         </div>
                         <div class="button_box" style="margin-top:30px;">
-                            <ion-button class="btn-blue" type="submit">Submit</ion-button>
+                            <ion-button class="btn-blue" type="submit" [disabled]="!loginForm.valid">Submit</ion-button>
                         </div>
                         <div class="text-center  mx-20 ">
                             <ion-label (click)="register()" class="f-15">Don't have an account?

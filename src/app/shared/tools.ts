@@ -194,10 +194,10 @@ export class Tools {
                         if (status == 401) {
                     
                             localStorage.clear();
-                            localStorage.removeItem('kushal_cart_data');
+                            localStorage.removeItem('killtechno_cart_data');
                             localStorage.removeItem('user_id');
                             localStorage.removeItem('login_token');
-                            localStorage.removeItem('kushal_user_data');
+                            localStorage.removeItem('killtechno_user_data');
                             this.router.navigateByUrl('/login', { replaceUrl: true });
                         }
                     }
@@ -223,10 +223,10 @@ export class Tools {
                     text: btnYes ? btnYes : 'Yes',
                     handler: () => {
                         localStorage.clear();
-                        localStorage.removeItem('kushal_cart_data');
+                        localStorage.removeItem('killtechno_cart_data');
                         localStorage.removeItem('user_id');
                         localStorage.removeItem('login_token');
-                        localStorage.removeItem('kushal_user_data');
+                        localStorage.removeItem('killtechno_user_data');
 
                         this.router.navigateByUrl('/login', { replaceUrl: true });
                     }
@@ -247,10 +247,10 @@ export class Tools {
                     handler: () => {
 
                         localStorage.clear();
-                        localStorage.removeItem('kushal_cart_data');
+                        localStorage.removeItem('killtechno_cart_data');
                         localStorage.removeItem('user_id');
                         localStorage.removeItem('login_token');
-                        localStorage.removeItem('kushal_user_data');
+                        localStorage.removeItem('killtechno_user_data');
                         this.router.navigateByUrl('/login', { replaceUrl: true });
                     }
                 }

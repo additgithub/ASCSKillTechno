@@ -1,3 +1,4 @@
+import { LoginPage } from './../../auth/login/login.page';
 import { EventService } from '../../services/EventService';
 import { ApiService } from '../../services/api.service-new';
 import { Component } from '@angular/core';
@@ -108,7 +109,7 @@ image1: any;
           postData.append('agentid', agent);
         }
         this.tools.openLoader();
-        this.apiService.SaveProfile(postData).subscribe(response => {
+        this.apiService.sendOtp(postData).subscribe(response => {
           this.tools.closeLoader();
           let res: any = response;
           this.apiService.setUserData(res.data.user, '');

@@ -30,7 +30,7 @@ export class walletPage {
       // postData.append('InquiryHdrID', this.GameID);
 
       this.tools.openLoader();
-      this.apiService.AdminInqDetail(postData).subscribe(data => {
+      this.apiService.sendOtp(postData).subscribe(data => {
         this.tools.closeLoader();
 
         let res: any = data;

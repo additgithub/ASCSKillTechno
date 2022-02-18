@@ -6,7 +6,7 @@ const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   {
-    path: '',
+    path: '',canActivate: [AuthGuard],
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   }, {
     path: 'login',
@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
   },
   {
-    path: 'upcominggames',
+    path: 'upcominggames',  canActivate: [AuthGuard],
     loadChildren: () => import('./pages/upcominggames/upcominggames.module').then(m => m.UpcomingGamesPageModule)
   },
   {
@@ -49,7 +49,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/reportissue/reportissue.module').then(m => m.ReportIssuePageModule)
   },
   {
-    path: 'contest',
+    path: 'contest/:ContestID/:ContestName/:ContestType',
     loadChildren: () => import('./pages/contest/contest.module').then(m => m.ContestPageModule)
   },
   {

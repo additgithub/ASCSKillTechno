@@ -11,22 +11,21 @@ import { EventService } from 'src/app/services/EventService';
   styleUrls: ['contest.page.scss'],
 })
 export class ContestPage {
-  GameID = '';
+  ContestID = '';
+  ContestName = '';
+  ContestType = '';
+  TotalFee:any =0;
+  TotalSelected:any =0;
 
-  InqNO = '';
-  InqDate = '';
-  Custname = '';
-  Agentname = '';
-  AlreadySelStatus = '';
-
-  AdminInqDetails = [];
-
-  StatusList: [];
-
-  Selstatus:any = "LOST";
+  ScripList=[];
+  scripName='';
+  upDownName='';
+  upDown=['UP','DOWN'];
+  contestList=[];
 
   user: any;
-  colors = ''
+
+  AllContest=false;
 
   constructor(public tools: Tools, private route: ActivatedRoute,
     public formBuilder: FormBuilder, private eventService: EventService,
@@ -35,54 +34,65 @@ export class ContestPage {
 
     this.route.params
       .subscribe((params) => {
-        console.log('params =>', params.GameID);
-        this.GameID = params.GameID;
+        console.log('params GameID=>', params.ContestID);
+        console.log('params ContestName=>', params.ContestName);
+        console.log('params ContestType=>', params.ContestType);
+        this.ContestID = params.ContestID;
+        this.ContestName = params.ContestName;
+        this.ContestType = params.ContestType;
       });
 
   }
   ionViewDidEnter() {
    // this.getStatusList();
+   this.getscrip();
   }
-  onChangeState(agent) {
-    this.Selstatus = agent;
-    console.log('Select agent ' + agent);
+  onChangeState(scripName) {
+    this.scripName = scripName.target.value;
+    console.log('Select scripName ' + this.scripName);
+  }
+  onChangeUpDownState(data) {
+    this.upDownName = data.target.value;
+    console.log('Select upDownName ' + this.upDownName);
   }
 
-  getAdminInquiryDetail() {
+  getscrip() {
     if (this.tools.isNetwork()) {
-      let postData = new FormData();
-
-      postData.append('InquiryHdrID', this.GameID);
-
       this.tools.openLoader();
-      this.apiService.AdminInqDetail(postData).subscribe(data => {
+      this.apiService.GetScrip().subscribe(data => {
         this.tools.closeLoader();
 
         let res: any = data;
-        console.log(' Response ', res);
-        this.AdminInqDetails = res.data.InquiryDetail;
+        console.log(' agent > ', res);
+        this.ScripList = res.data.Scrip;
+        this.ContestDetails();
 
-        this.InqNO = this.AdminInqDetails[0].InqNO
-        this.InqDate = this.AdminInqDetails[0].InqDate
-        this.Custname = this.AdminInqDetails[0].fullname
-        this.Agentname = this.AdminInqDetails[0].agentname
-        this.AlreadySelStatus = this.AdminInqDetails[0].Status
-        
-        this.Selstatus = this.AlreadySelStatus;
-        console.log("Selstatus >>",this.Selstatus);
-        console.log("AlreadySelStatus >>",this.AlreadySelStatus);
+      }, (error: Response) => {
+        this.tools.closeLoader();
+        console.log(error);
 
-        if(this.AdminInqDetails[0].Status ==="Pending"){
-          this.colors = 'yallowcolor'
-        }
-        if(this.AdminInqDetails[0].Status === "In Progress"){
-          this.colors = 'orangecolor'
-        }
-        if(this.AdminInqDetails[0].Status ==="Completed"){
-          this.colors = 'greencolor'
-        }
-        if(this.AdminInqDetails[0].Status ==="Cancelled"){
-          this.colors = 'radcolor'
+        let err: any = error;
+        this.tools.openAlertToken(err.status, err.error.message);
+      });
+
+    } else {
+      this.tools.closeLoader();
+    }
+
+  }
+  ContestDetails() {
+    if (this.tools.isNetwork()) {
+      this.tools.openLoader();
+      this.apiService.ContestDetails(this.ContestID).subscribe(data => {
+        this.tools.closeLoader();
+
+        let res: any = data;
+        console.log(' agent > ', res);
+     
+        this.contestList = res.data.gameDetail;
+        for (let index = 0; index < this.contestList.length; index++) {
+          const element = this.contestList[index];
+          this.contestList[index].isChecked=false
         }
 
       }, (error: Response) => {
@@ -98,4 +108,42 @@ export class ContestPage {
     }
 
   }
+
+  changeItem(item){
+    console.log('items ',item)     
+     console.log('isChecked ', this.contestList.filter(item=> item.isChecked).length)
+      this.TotalSelected=this.contestList.filter(item=> item.isChecked).length;
+      var chkAmt = 0;
+      for (let k = 0; k < this.contestList.length; k++) {
+        const element = this.contestList[k];
+        if (element.isChecked) {
+          chkAmt =chkAmt + parseFloat(element.GameAmt);
+          console.log('chkAmt ',chkAmt) 
+          this.TotalFee=chkAmt.toFixed(2);
+        }
+      }
+  }
+
+
+  isAllChecked(event) {
+    console.log("Check Box >> ", event.target.checked);
+    if(event.target.checked){
+      var chkAmt = 0;
+      for (let index = 0; index < this.contestList.length; index++) {
+        const element = this.contestList[index];
+        this.contestList[index].isChecked=true;
+        chkAmt =chkAmt + parseFloat(element.GameAmt);
+          console.log('chkAmt ',chkAmt) 
+          this.TotalFee=chkAmt.toFixed(2);
+      }
+
+    }else{
+      this.TotalFee=0;
+      for (let index = 0; index < this.contestList.length; index++) {
+        const element = this.contestList[index];
+        this.contestList[index].isChecked=false;
+      }
+    }
+}
+    
 }

@@ -25,65 +25,65 @@ export class BrochurePage {
   }
 
   ionViewDidEnter() {
-    this.getMachineList();
+    //this.getMachineList();
   }
 
   onChangeState(MachineID) {
     console.log('Select MachineID ' + MachineID);
-    this.getPDFList(MachineID);
+    //this.getPDFList(MachineID);
   }
 
-  getMachineList() {
-    if (this.tools.isNetwork()) {
-      this.tools.openLoader();
-      this.apiService.MachineList().subscribe(data => {
-        this.tools.closeLoader();
+  // getMachineList() {
+  //   if (this.tools.isNetwork()) {
+  //     this.tools.openLoader();
+  //     this.apiService.MachineList().subscribe(data => {
+  //       this.tools.closeLoader();
 
-        let res: any = data;
-        console.log(' Response ', res);
-        this.MachineList = res.data.Machine;
+  //       let res: any = data;
+  //       console.log(' Response ', res);
+  //       this.MachineList = res.data.Machine;
 
-      }, (error: Response) => {
-        this.tools.closeLoader();
-        console.log(error);
+  //     }, (error: Response) => {
+  //       this.tools.closeLoader();
+  //       console.log(error);
 
-        let err: any = error;
-        this.tools.openAlertToken(err.status, err.error.message);
-      });
+  //       let err: any = error;
+  //       this.tools.openAlertToken(err.status, err.error.message);
+  //     });
 
-    } else {
-      this.tools.closeLoader();
-    }
+  //   } else {
+  //     this.tools.closeLoader();
+  //   }
 
-  }
+  // }
 
-  getPDFList(MachineID) {
-      if (this.tools.isNetwork()) {
-        this.tools.openLoader();
-        let postData = new FormData();
+  // getPDFList(MachineID) {
+  //     if (this.tools.isNetwork()) {
+  //       this.tools.openLoader();
+  //       let postData = new FormData();
 
-        postData.append('MachineID',MachineID);
-        this.apiService.getMachinePdfList(postData).subscribe(response => {
-          this.tools.closeLoader();
-          let res: any = response;
-          console.log('Api PDFList >> ', res);
+  //       postData.append('MachineID',MachineID);
+  //       this.apiService.getMachinePdfList(postData).subscribe(response => {
+  //         this.tools.closeLoader();
+  //         let res: any = response;
+  //         console.log('Api PDFList >> ', res);
         
-          this.PDFList= [];
-          this.PDFList = res.data.Machine;
+  //         this.PDFList= [];
+  //         this.PDFList = res.data.Machine;
 
          
 
-        }, (error: Response) => {
-          let err: any = error;
-          console.log('Api Error ', err);
+  //       }, (error: Response) => {
+  //         let err: any = error;
+  //         console.log('Api Error ', err);
 
-          this.tools.closeLoader();
-          this.tools.openAlertToken(err.status, err.error.message);
-          console.log('Api Error >>>> ', err.error.message);
+  //         this.tools.closeLoader();
+  //         this.tools.openAlertToken(err.status, err.error.message);
+  //         console.log('Api Error >>>> ', err.error.message);
 
-        });
-    }
-  }
+  //       });
+  //   }
+  // }
 
   dPDF(url){
     window.open(url,"_system","location=yes,enableViewportScale=yes,hidden=no");

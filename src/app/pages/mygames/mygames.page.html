@@ -1,7 +1,7 @@
 <ion-content>
-    <ion-grid class="container mt-20" (click)="itemClick()">
+    <ion-grid class="container mt-20" (click)="itemClick()" *ngFor="let game of myGameList ;">
         <!-- <ion-row class="box-des" (click)="inquirydetails(inq.InquiryHdrID)" *ngFor="let inq of InqList ;"> -->
-        <ion-label class="content d-block">Date 00-00-0000 (Weekly)</ion-label>
+        <ion-label class="content d-block">Date {{game.GameDate}} (Weekly)</ion-label>
         <ion-row class="box-des">
             <ion-col>
                 <ion-row class="user-info-block">
@@ -12,7 +12,7 @@
                         <ion-label class="btext">UpDown Game</ion-label>
                     </ion-col>
                     <ion-col size="2.5">
-                        <ion-button class="btn">Join</ion-button>
+                        <ion-button class="btn">View</ion-button>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -28,11 +28,11 @@
         </ion-row>
     </ion-grid>
 
-    <!-- <ion-grid class="container empty-list-box" *ngIf="InqList?.length == 0">
+    <ion-grid class="container empty-list-box" *ngIf="myGameList?.length == 0">
         <ion-row class="p-0">
             <ion-col size="12" class="p-0">
                 <ion-label class="empty-list">No Data Available!</ion-label>
             </ion-col>
         </ion-row>
-    </ion-grid> -->
+    </ion-grid>
 </ion-content>

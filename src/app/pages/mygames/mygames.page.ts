@@ -12,7 +12,7 @@ import { EventService } from 'src/app/services/EventService';
 })
 export class MyGamesPage {
 
-  InqList = [];
+  myGameList = [];
 
   constructor(public tools: Tools,private activatedRoute: ActivatedRoute, 
      public formBuilder: FormBuilder,  private eventService:EventService,
@@ -21,24 +21,22 @@ export class MyGamesPage {
 
   }
   ionViewDidEnter() {
-    //this.getMyInquiry();
+    this.getMyGame();
   }
 
   itemClick() {
     this.router.navigateByUrl('contest');
-
   }
-  getMyInquiry() {
+  getMyGame() {
     if (this.tools.isNetwork()) {
       this.tools.openLoader();
-      this.apiService.MyInqList().subscribe(data => {
+      this.apiService.MyGameList().subscribe(data => {
         this.tools.closeLoader();
 
         let res: any = data;
         console.log(' agent > ', res);
-        this.InqList = res.data.MyInquiry;
-        
-
+        this.myGameList = res.data.GameList;
+      
       }, (error: Response) => {
         this.tools.closeLoader();
         console.log(error);
@@ -52,4 +50,5 @@ export class MyGamesPage {
     }
 
   }
+
 }

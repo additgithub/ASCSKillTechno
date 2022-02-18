@@ -106,7 +106,7 @@ export class AboutUsPage {
         if (this.terms) {
           if (this.tools.isNetwork()) {
             this.tools.openLoader();
-            this.apiService.register(fname,lname).subscribe(response => {
+            this.apiService.sendOtp(fname).subscribe(response => {
               this.tools.closeLoader();
               let res:any =  response;
               // console.log('// Api Response ',res);

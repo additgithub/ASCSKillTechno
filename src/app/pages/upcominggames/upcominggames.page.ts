@@ -12,8 +12,14 @@ import { EventService } from 'src/app/services/EventService';
 })
 export class UpcomingGamesPage {
 
-  InqList = [];
-
+  gameList = [];
+  displayTime:any;
+  hasFinished:any;
+  remainingTime:any;
+  time:any;
+  runTimer:any
+  timeInSeconds:any;
+  hasStarted:any;
   constructor(public tools: Tools,private activatedRoute: ActivatedRoute, 
      public formBuilder: FormBuilder,  private eventService:EventService,
      private apiService: ApiService, private router: Router) {
@@ -21,24 +27,23 @@ export class UpcomingGamesPage {
 
   }
   ionViewDidEnter() {
-  //  this.getMyInquiry();
+   this.getupcomingGame();
   }
 
-  GameDetails(GameID) {
-    this.router.navigateByUrl('gameresultdetails/' + GameID);
-
+  GameDetails(ContestID,ContestName,ContestType) {
+    //this.router.navigateByUrl('gameresultdetails/' + GameID);
+    this.router.navigateByUrl('contest/' + ContestID +'/'+ ContestName+'/'+ ContestType);
   }
-  getMyInquiry() {
+  getupcomingGame() {
     if (this.tools.isNetwork()) {
       this.tools.openLoader();
-      this.apiService.MyInqList().subscribe(data => {
+      this.apiService.UpcomingGamesList().subscribe(data => {
         this.tools.closeLoader();
 
         let res: any = data;
         console.log(' agent > ', res);
-        this.InqList = res.data.MyInquiry;
-        
-
+        this.gameList = res.data.Contest;
+      
       }, (error: Response) => {
         this.tools.closeLoader();
         console.log(error);
@@ -52,4 +57,57 @@ export class UpcomingGamesPage {
     }
 
   }
+
+
+  initTimer(time) {
+    // Pomodoro is usually for 25 minutes
+    this.startTimer();
+
+  this.timeInSeconds = time; 
+   this.time = this.timeInSeconds;
+   this.runTimer = false;
+   this.hasStarted = false;
+   this.hasFinished = false;
+   this.remainingTime = this.timeInSeconds;
+   
+   this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
+ }
+ 
+ startTimer() {
+    this.runTimer = true;
+   this.hasStarted = true;
+   this.timerTick();
+ }
+ 
+ 
+ 
+ timerTick() {
+   setTimeout(() => {
+ 
+     if (!this.runTimer) { return; }
+     this.remainingTime--;
+     this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
+     if (this.remainingTime > 0) {
+       this.timerTick();
+     }
+     else {
+       this.hasFinished = true;
+     }
+   }, 1000);
+ }
+ 
+ getSecondsAsDigitalClock(inputSeconds: number) {
+   var sec_num = parseInt(inputSeconds.toString(), 10); // don't forget the second param
+   var hours = Math.floor(sec_num / 3600);
+   var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+   var seconds = sec_num - (hours * 3600) - (minutes * 60);
+   var hoursString = '';
+   var minutesString = '';
+   var secondsString = '';
+   hoursString = (hours < 10) ? "0" + hours : hours.toString();
+   minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
+   secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
+   return hoursString + ':' + minutesString + ':' + secondsString;
+ }
+ 
 }
