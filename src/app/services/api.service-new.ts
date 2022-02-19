@@ -172,6 +172,13 @@ dataURItoBlob(dataURI) {
 
     return this.http.post(environment.BaseUrl + "game/gamedetail", postData, this.httpOptions);
   }
+  SaveProfile(postData) {
+    this.setHeaderData();
+    postData.append("device_id", this.device_id);
+    postData.append("device_details", this.device_details);
+    postData.append("player_id", localStorage.getItem('PlearID'));
+    return this.http.post(environment.BaseUrl + "auth/edit_profile", postData, this.httpOptions);
+  }
   // GET & SET USER DATA
  
   setUserData(userData, login_token) {
