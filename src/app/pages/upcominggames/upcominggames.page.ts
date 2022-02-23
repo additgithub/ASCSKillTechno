@@ -13,6 +13,8 @@ import { EventService } from 'src/app/services/EventService';
 export class UpcomingGamesPage {
 
   gameList = [];
+  gameArrayList = [];
+
   displayTime:any;
   hasFinished:any;
   remainingTime:any;
@@ -30,9 +32,9 @@ export class UpcomingGamesPage {
    this.getupcomingGame();
   }
 
-  GameDetails(ContestID,ContestName,ContestType) {
+  GameDetails(GameID) {
     //this.router.navigateByUrl('gameresultdetails/' + GameID);
-    this.router.navigateByUrl('contest/' + ContestID +'/'+ ContestName+'/'+ ContestType);
+    this.router.navigateByUrl('contest/' + GameID);
   }
   getupcomingGame() {
     if (this.tools.isNetwork()) {
@@ -42,7 +44,25 @@ export class UpcomingGamesPage {
 
         let res: any = data;
         console.log(' agent > ', res);
-        this.gameList = res.data.Contest;
+         this.gameArrayList=[];
+        let date = '';
+        this.gameList = res.data.GameList;
+
+        this.gameList.forEach(element => {
+          console.log("date>>>",date)
+          console.log("elemrnt date>>>",element.GameDate)
+          if(date == ''){
+            date = element.GameDate;
+            this.gameArrayList.push({'date':element.GameDate,'data':this.gameList.filter((v) => (v.GameDate === element.GameDate))})
+          }else if(date != element.GameDate){
+            if(this.gameArrayList.filter((v) => (v.date != element.GameDate))){
+               date = element.GameDate;
+               this.gameArrayList.push({'date':element.GameDate,'data':this.gameList.filter((v) => (v.GameDate === element.GameDate))})
+            }
+          }
+          
+        });
+        console.log("this m array>>",this.gameArrayList)
       
       }, (error: Response) => {
         this.tools.closeLoader();

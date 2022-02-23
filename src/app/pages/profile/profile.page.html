@@ -31,9 +31,9 @@
                 </div> -->
 
                 <div class="pro_img">
-                    <!-- <ion-img  *ngIf="this.user.UserPic" src="{{ this.user.image!='https://backend.iflyhto.com/uploads/user/'? this.user.UserPic:'../../assets/images/avtar.png'}}" error="../../assets/images/avtar.png"> -->
-
-                    <ion-img *ngIf="!IsEdit" src="assets/images/profile.png"></ion-img>
+                    <ion-img  *ngIf="this.user.Image && !IsEdit" src="{{this.user.Image}}" error="assets/images/profile.png">
+                    </ion-img>
+                    <ion-img *ngIf="!this.user.Image && !IsEdit" src="assets/images/profile.png"></ion-img>
 
                     <ion-img *ngIf="IsEdit && !image1" src="assets/images/editprofile.png" (click)="selectImage(1)"></ion-img>
 
@@ -61,9 +61,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <ion-input type="tel" [readonly]="!IsEdit?true:false" maxlength="10" placeholder="Mobile No" class="form-control" formControlName='mobile'>
+                                    <ion-input type="tel" [readonly]="true" maxlength="10" placeholder="Mobile No" class="form-control" formControlName='mobile'>
                                         <!-- <ion-input type="tel" maxlength="10" placeholder="Mobile No" formControlName='mobile' class="form-control"> -->
-                                        <ion-label *ngIf="this.loginForm.get('mobile').value.length ==10 && IsEdit" style="color:#2a6193; padding-right: 10px;" (click)="GetOTP()">GET</ion-label>
+                                        <!-- <ion-label *ngIf="this.loginForm.get('mobile').value.length ==10 && IsEdit" style="color:#2a6193; padding-right: 10px;" (click)="GetOTP()">GET</ion-label> -->
                                     </ion-input>
                                 </div>
 

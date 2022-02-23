@@ -24,8 +24,8 @@ export class MyGamesPage {
     this.getMyGame();
   }
 
-  itemClick() {
-    this.router.navigateByUrl('contest');
+  itemClick(GameID) {
+    this.router.navigateByUrl('contest/' + GameID);
   }
   getMyGame() {
     if (this.tools.isNetwork()) {
@@ -35,7 +35,7 @@ export class MyGamesPage {
 
         let res: any = data;
         console.log(' agent > ', res);
-        this.myGameList = res.data.GameList;
+        this.myGameList = res.data.joinGameUser;
       
       }, (error: Response) => {
         this.tools.closeLoader();

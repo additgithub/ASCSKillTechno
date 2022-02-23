@@ -9,7 +9,7 @@
                             <ion-buttons (click)="tools.backPage()" no-padding>
                                 <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
                             </ion-buttons>
-                            <ion-label class="page_title">{{ContestName}}</ion-label>
+                            <ion-label class="page_title">{{GameName}}</ion-label>
                         </div>
                     </ion-col>
                 </ion-row>
@@ -21,7 +21,7 @@
 
 <ion-content style="background: #fff">
     <ion-grid class="container mt-20">
-        <ion-label class="btext" style="display: block; font-size: 20px !important;">Entire Closing In 00:00:00</ion-label>
+        <ion-label class="btext" style="display: block; font-size: 20px !important;">Entire Closing In : {{GameClosingTime}}</ion-label>
         <div class="form-group mt-20">
             <!-- <ion-select okText="Ok" [(ngModel)]="Selstatus" [value]="Selstatus" placeholder="Select Status" cancelText="Dismiss" class="custom_select" (ionChange)="onChangeState($event.target.value)">
                 <ion-select-option *ngFor="let item of StatusList" [value]="item.Status">{{item.Status}}</ion-select-option>
@@ -30,13 +30,13 @@
                 <ion-select-option *ngFor="let item of ScripList" value="{{item.ScriptID}}">{{item.ScriptName}}</ion-select-option>
             </ion-select>
         </div>
-        <div class="form-group mt-20" *ngIf="this.ContestType =='T' ">
+        <div class="form-group mt-20" *ngIf="this.GameType =='E' && this.Option.length !=0">
             <ion-select okText="Ok" placeholder="Select UP-DOWN" class="custom_select" cancelText="Dismiss" ngModel="upDownName" (ionChange)="onChangeUpDownState($event)">
-                <ion-select-option *ngFor="let item of upDown" value="{{item}}">{{item}}</ion-select-option>
+                <ion-select-option *ngFor="let item of Option" value="{{item.Optionvalue}}">{{item.Optionvalue}}</ion-select-option>
             </ion-select>
         </div>
-        <div class="form-group mt-10" *ngIf="this.ContestType =='E' ">
-            <ion-input type="text" placeholder="Enter Forecast Value" class="form-control"></ion-input>
+        <div class="form-group mt-10" *ngIf="this.GameType =='T' ">
+            <ion-input type="text" placeholder="Enter Forecast Value" [(ngModel)]="forcastvalue" class="form-control"></ion-input>
         </div>
 
         <ion-row class="mt-20">
@@ -90,13 +90,13 @@
     </ion-grid>
 </ion-content>
 
-<ion-footer style="min-height: 70px !important; ">
+<ion-footer style="min-height: 70px !important;">
     <ion-row>
         <ion-col size="6">
             <ion-label class="btext">Total Fee : Rs {{TotalFee}}</ion-label>
         </ion-col>
         <ion-col size="4">
-            <ion-button class="btn">PAY</ion-button>
+            <ion-button class="btn" (click)="pay()">PAY</ion-button>
         </ion-col>
     </ion-row>
 </ion-footer>

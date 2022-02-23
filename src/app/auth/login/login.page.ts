@@ -95,16 +95,19 @@ export class LoginPage {
           this.tools.closeLoader();
           let res: any = response;
           console.log("res >>",res)
+          if(res.status){
+            this.loginForm.reset();
+            localStorage.setItem('login_token', res.login_token);
+             this.apiService.setUserData(res.data.user, res.login_token);
+             this.router.navigateByUrl('/home', { replaceUrl: true }); 
+          }
           this.tools.openNotification(res.message)
-         this.loginForm.reset();
-         localStorage.setItem('login_token', res.login_token);
-          this.apiService.setUserData(res.data.user, res.login_token);
-          this.router.navigateByUrl('/home', { replaceUrl: true }); 
+       
          //this.router.navigateByUrl('home');
         }, (error: Response) => {
           let err: any = error;        
           console.log('Api Error ', err);
-
+          this.getOTP=false;
           this.tools.closeLoader();
           this.tools.openAlertToken(err.status, err.error.message);
           console.log('Api Error >>>> ', err.error.message);

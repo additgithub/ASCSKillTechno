@@ -149,21 +149,17 @@ dataURItoBlob(dataURI) {
 
   UpcomingGamesList(): any {
     this.setHeaderData();
-    return this.http.get(environment.BaseUrl + 'contest/contest_list', this.httpOptions);
-  }
-  MyGameList(): any {
-    this.setHeaderData();
-    return this.http.get(environment.BaseUrl + 'game/myGame', this.httpOptions);
+    return this.http.get(environment.BaseUrl + 'game/upcomingGames', this.httpOptions);
   }
   GetScrip(): any {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'status/scripmaster_list', this.httpOptions);
   }
-  ContestDetails(ContestID) {
+  GameDetails(GameID) {
     this.setHeaderData();
 
     let postData = new FormData();
-    postData.append("ContestID", ContestID);
+    postData.append("GameID", GameID);
 
     postData.append("device_id", this.device_id);
     postData.append("device_details", this.device_details);
@@ -172,6 +168,24 @@ dataURItoBlob(dataURI) {
 
     return this.http.post(environment.BaseUrl + "game/gamedetail", postData, this.httpOptions);
   }
+  GetOption(GameID,ScriptID) {
+    this.setHeaderData();
+
+    let postData = new FormData();
+    postData.append("GameID", GameID);
+    postData.append("ScriptID", ScriptID);
+    return this.http.post(environment.BaseUrl + "game/forecasting_option", postData, this.httpOptions);
+  }
+  GameJoin(postData) {
+    this.setHeaderData();   
+    return this.http.post(environment.BaseUrl + "game/joinGame", postData, this.httpOptions);
+  }
+  MyGameList(): any {
+    this.setHeaderData();
+    return this.http.get(environment.BaseUrl + 'game/myGame', this.httpOptions);
+  }
+ 
+
   SaveProfile(postData) {
     this.setHeaderData();
     postData.append("device_id", this.device_id);

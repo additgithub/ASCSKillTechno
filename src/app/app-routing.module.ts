@@ -49,7 +49,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/reportissue/reportissue.module').then(m => m.ReportIssuePageModule)
   },
   {
-    path: 'contest/:ContestID/:ContestName/:ContestType',
+    path: 'contest/:GameID',
     loadChildren: () => import('./pages/contest/contest.module').then(m => m.ContestPageModule)
   },
   {
