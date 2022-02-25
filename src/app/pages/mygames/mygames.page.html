@@ -1,5 +1,5 @@
 <ion-content>
-    <ion-grid class="container mt-20" (click)="itemClick(game.GameID)" *ngFor="let game of myGameList ;">
+    <ion-grid class="container mt-20" (click)="gameDetails(game.GameID)" *ngFor="let game of myGameList ;">
         <ion-label class="content d-block">Date {{game.GameDate}}</ion-label>
         <ion-row class="box-des">
             <ion-col>

@@ -53,6 +53,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/contest/contest.module').then(m => m.ContestPageModule)
   },
   {
+    path: 'mygamedetails/:GameID',
+    loadChildren: () => import('./pages/mygamedetails/mygamedetails.module').then(m => m.MyGameDetailsPageModule)
+  },
+  {
     path: 'aboutus',
     loadChildren: () => import('./pages/aboutus/aboutus.module').then(m => m.AboutUsPageModule)
   },

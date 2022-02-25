@@ -17,16 +17,13 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-
-
 <ion-content style="background: #fff">
     <ion-grid class="container mt-20">
-        <!-- <ion-row class="products_list box-des" *ngFor="let inq of AdminInqDetails ;"> -->
-        <ion-row class="box-des">
-            <ion-col>
+        <ion-row class="box-des" *ngFor="let hist of GameHistory ;">
+            <ion-col (click)="gameResult(hist.GameID)">
                 <ion-row class="user-info-block">
                     <ion-col size="9">
-                        <ion-label class="btext">Forecasting Game</ion-label>
+                        <ion-label class="btext">{{hist.ContestName}}</ion-label>
                     </ion-col>
                     <ion-col size="3">
                         <ion-button>View</ion-button>
@@ -34,12 +31,12 @@
                 </ion-row>
                 <ion-row>
                     <ion-col class="left_col" size="6">
-                        <ion-label class="subtext d-block">Contest Fee : Rs 100.00</ion-label>
-                        <ion-label class="subtext d-block">Total Players : 0000</ion-label>
+                        <ion-label class="subtext d-block">Contest Fee : {{hist.GameAmt| currency :'INR':'symbol':'1.2-2' }}</ion-label>
+                        <ion-label class="subtext d-block">Total Players : {{hist.MinJoiners}}</ion-label>
                     </ion-col>
                     <ion-col class="right_col" size="6">
-                        <ion-label class="subtext d-block">Game Date : 00-00-0000 </ion-label>
-                        <ion-label [ngClass]="{'greencolor' : Selstatus == 'Win','radcolor' : Selstatus == 'LOST' }">{{Selstatus}}</ion-label>
+                        <ion-label class="subtext d-block">Game Date : {{hist.GameDate}} </ion-label>
+                        <!-- <ion-label [ngClass]="{'greencolor' : Selstatus == 'Win','radcolor' : Selstatus == 'LOST' }">{{Selstatus}}</ion-label> -->
                     </ion-col>
                 </ion-row>
 

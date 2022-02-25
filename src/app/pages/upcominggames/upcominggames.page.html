@@ -1,7 +1,7 @@
 <ion-content>
-    <ion-grid class="container mt-20" (click)="GameDetails(game.GameID)" *ngFor="let game of gameArrayList ;">
-        <ion-label class="content d-block"  >Date {{game.date}}</ion-label>
-        <ion-row class="box-des"  *ngFor="let data of game.data ;">
+    <ion-grid class="container mt-20" *ngFor="let game of gameArrayList ;">
+        <ion-label class="content d-block">Date {{game.date}}</ion-label>
+        <ion-row class="box-des" *ngFor="let data of game.data ;">
             <ion-col>
                 <ion-row class="user-info-block">
                     <ion-col size="2" class="p-0">
@@ -11,7 +11,7 @@
                         <ion-label class="btext">{{data.ContestName}}</ion-label>
                     </ion-col>
                     <ion-col size="2.5">
-                        <ion-button class="btn">Join</ion-button>
+                        <ion-button class="btn" (click)="GameDetails(data.GameID)">Join</ion-button>
                     </ion-col>
                 </ion-row>
                 <ion-row>

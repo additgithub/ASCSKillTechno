@@ -184,8 +184,26 @@ dataURItoBlob(dataURI) {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'game/myGame', this.httpOptions);
   }
- 
+  MyGameDetails(GameID) {
+    this.setHeaderData();
 
+    let postData = new FormData();
+    postData.append("GameID", GameID);
+
+    postData.append("device_id", this.device_id);
+    postData.append("device_details", this.device_details);
+    postData.append("player_id", localStorage.getItem('PlearID'));
+
+    return this.http.post(environment.BaseUrl + "game/Joingamedetail", postData, this.httpOptions);
+  }
+  GetWalletDetails(): any {
+    this.setHeaderData();
+    return this.http.get(environment.BaseUrl + 'wallet/getWalletAmount', this.httpOptions);
+  }
+  AddWalletAmt(postData) {
+    this.setHeaderData();   
+    return this.http.post(environment.BaseUrl + "wallet/monneyadd", postData, this.httpOptions);
+  }
   SaveProfile(postData) {
     this.setHeaderData();
     postData.append("device_id", this.device_id);
@@ -193,6 +211,21 @@ dataURItoBlob(dataURI) {
     postData.append("player_id", localStorage.getItem('PlearID'));
     return this.http.post(environment.BaseUrl + "auth/edit_profile", postData, this.httpOptions);
   }
+
+  GetGameHistory(): any {
+    this.setHeaderData();
+    return this.http.get(environment.BaseUrl + 'history/gameHistory', this.httpOptions);
+  }
+  
+  GetGameResult(): any {
+    this.setHeaderData();
+    return this.http.get(environment.BaseUrl + 'history/gameHistory', this.httpOptions);
+  }
+
+
+
+
+
   // GET & SET USER DATA
  
   setUserData(userData, login_token) {

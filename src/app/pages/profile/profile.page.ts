@@ -22,6 +22,7 @@ export class ProfilePage {
 
   IsEdit=false;
   image1: any;
+
   getOTP=false;
 
   constructor(public pickerCtrl: PickerController, public tools: Tools, public formBuilder: FormBuilder, private eventService: EventService,
@@ -30,7 +31,7 @@ export class ProfilePage {
     private router: Router, public apiService: ApiService) {
     this.user = this.apiService.getUserData();
 
-    console.log("image >>>",typeof this.user.Image)
+    console.log("image >>>",this.user.Image)
     this.loginForm = this.formBuilder.group({
   
       fname: [this.user.first_name, [Validators.required, Validators.pattern('[a-zA-Z]+')]],
@@ -43,10 +44,6 @@ export class ProfilePage {
   ionViewDidEnter() {
   }
 
-  login() {
-    localStorage.setItem('isFirst', 'true');
-    this.router.navigateByUrl('login');
-  }
   GetOTP() {
     let mobileNo = this.loginForm.get('mobile').value;
 
@@ -119,12 +116,13 @@ export class ProfilePage {
         postData.append('first_name', fname);
         postData.append('last_name', lname);
         postData.append('mobile_no', mobile);
-        postData.append('Image', this.image1);
+        postData.append('Image',this.image1);
     
         this.tools.openLoader();
         this.apiService.SaveProfile(postData).subscribe(response => {
           this.tools.closeLoader();
           let res: any = response;
+          console.log("prof >>>",res)
           this.apiService.setUserData(res.data.user, '');
           this.router.navigateByUrl('/home', { replaceUrl: true });
         }, (error: Response) => {

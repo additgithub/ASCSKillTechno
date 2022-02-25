@@ -23,28 +23,29 @@
     <ion-row style="background: #ee6706; min-height: 250px !important;">
         <ion-col>
             <ion-label class="text-center d-block f-15 mt-20" style="color: #fff;">Available Amount</ion-label>
-            <ion-label class="btittle d-block mt-10">Rs 000000</ion-label>
+            <ion-label class="btittle d-block mt-10">{{DisplayAmount| currency :'INR':'symbol':'1.2-2' }}</ion-label>
+
             <div style="margin: 15px !important;">
-                <ion-input type="tel" placeholder="Enter Amount" class="form-control"></ion-input>
-                <ion-button class="btn-blue mt-20" type="submit">Add Money</ion-button>
+                <ion-input type="tel" placeholder="Enter Amount" [(ngModel)]="amount" *ngIf="firstAdd" class="form-control"></ion-input>
+                <ion-button class="btn-blue mt-20" (click)="addMoney()">Add Money</ion-button>
             </div>
         </ion-col>
     </ion-row>
     <ion-grid class="container mt-20">
-        <!-- <ion-row class="products_list box-des" *ngFor="let inq of AdminInqDetails ;"> -->
-        <ion-row class="box-des">
+        <ion-row class="box-des" *ngFor="let trans of TransactionList ;">
             <ion-col>
                 <ion-row>
                     <ion-col size="1.5" class="py-0">
-                        <ion-img class="menu-img" src="assets/images/up.png"></ion-img>
+                        <ion-img class="menu-img" *ngIf="trans.CRDB =='CR'" src="assets/images/up.png"></ion-img>
+                        <ion-img class="menu-img" *ngIf="trans.CRDB =='DR'" src="assets/images/down.png"></ion-img>
                     </ion-col>
                     <ion-col size="7" class="left_col">
-                        <ion-label class="subtxt text-left d-block">Forecasting Game (Nifty)</ion-label>
-                        <ion-label class="subtxt text-left d-block">00-00-0000 00:00 AM </ion-label>
+                        <ion-label class="subtxt text-left d-block">{{trans.Title}}</ion-label>
+                        <ion-label class="subtxt text-left d-block">{{trans.PaymentDate}}</ion-label>
                     </ion-col>
                     <ion-col size="3.5" class="right_col">
-                        <ion-label class="btext text-right d-block" [ngClass]="{'greencolor' : Selstatus == 'Credit','radcolor' : Selstatus == 'Debit' }">{{Selstatus}}</ion-label>
-                        <ion-label class="btext text-right d-block">Rs 0000</ion-label>
+                        <ion-label class="btext text-right d-block" [ngClass]="{'greencolor' : trans.CRDB == 'CR','radcolor' : trans.CRDB == 'DR' }">{{trans.CRDB}}</ion-label>
+                        <ion-label class="btext text-right d-block">{{trans.PaymentAmt| currency :'INR':'symbol':'1.2-2' }}</ion-label>
                     </ion-col>
                 </ion-row>
             </ion-col>
@@ -53,11 +54,11 @@
 
     </ion-grid>
 
-    <!-- <ion-grid class="container empty-list-box" *ngIf="AdminInqDetails?.length == 0">
+    <ion-grid class="container empty-list-box" *ngIf="TransactionList?.length == 0">
         <ion-row class="p-0">
             <ion-col size="12" class="p-0">
                 <ion-label class="empty-list">No Data Available!</ion-label>
             </ion-col>
         </ion-row>
-    </ion-grid> -->
+    </ion-grid>
 </ion-content>

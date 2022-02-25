@@ -11,31 +11,79 @@ import { EventService } from 'src/app/services/EventService';
   styleUrls: ['wallet.page.scss'],
 })
 export class walletPage {
-   AdminInqDetails = [];
-   Selstatus:any='Credit'
+   Selstatus:any=''
+
+   amount:any='';
+   firstAdd=false;
+   DisplayAmount:any=0;
+
+   TransactionList = [];
+
   constructor(public tools: Tools, private route: ActivatedRoute,
     public formBuilder: FormBuilder, private eventService: EventService,
     private apiService: ApiService, private router: Router) {
-
   }
+
   ionViewDidEnter() {
-   // this.getStatusList();
+    this.getWalletDetails();
   }
 
+  addMoney(){
+    if(this.firstAdd){
+      if(this.amount == ''){
+        this.tools.openNotification("Enter Amount");
+      }else{
+        this.AddWalletAmt();
+      }
+    }else{
+      this.firstAdd=true;
+    }
+  
 
-  getAdminInquiryDetail() {
+  }
+
+  getWalletDetails() {
+    if (this.tools.isNetwork()) {
+      this.tools.openLoader();
+      this.apiService.GetWalletDetails().subscribe(data => {
+        this.tools.closeLoader();
+
+        let res: any = data;
+        console.log('wallet Response ', res);
+        console.log('wallet Response ', res.data.GetAmout.WalletAmt);
+        this.DisplayAmount=res.data.GetAmout.WalletAmt
+        this.TransactionList=res.data.PaymentList
+
+      }, (error: Response) => {
+        this.tools.closeLoader();
+        console.log(error);
+
+        let err: any = error;
+        this.tools.openAlertToken(err.status, err.error.message);
+      });
+
+    } else {
+      this.tools.closeLoader();
+    }
+
+  }
+
+  AddWalletAmt() {
     if (this.tools.isNetwork()) {
       let postData = new FormData();
 
-      // postData.append('InquiryHdrID', this.GameID);
+      postData.append('WalletAmt', this.amount);
 
       this.tools.openLoader();
-      this.apiService.sendOtp(postData).subscribe(data => {
+      this.apiService.AddWalletAmt(postData).subscribe(data => {
         this.tools.closeLoader();
 
         let res: any = data;
         console.log(' Response ', res);
-        this.AdminInqDetails = res.data.InquiryDetail;
+        this.tools.openNotification(res.message)
+        this.amount=''
+        this.firstAdd=false
+        this.getWalletDetails();
       }, (error: Response) => {
         this.tools.closeLoader();
         console.log(error);

@@ -36,6 +36,7 @@ export class UpcomingGamesPage {
     //this.router.navigateByUrl('gameresultdetails/' + GameID);
     this.router.navigateByUrl('contest/' + GameID);
   }
+
   getupcomingGame() {
     if (this.tools.isNetwork()) {
       this.tools.openLoader();
@@ -78,7 +79,6 @@ export class UpcomingGamesPage {
 
   }
 
-
   initTimer(time) {
     // Pomodoro is usually for 25 minutes
     this.startTimer();
@@ -98,9 +98,7 @@ export class UpcomingGamesPage {
    this.hasStarted = true;
    this.timerTick();
  }
- 
- 
- 
+  
  timerTick() {
    setTimeout(() => {
  

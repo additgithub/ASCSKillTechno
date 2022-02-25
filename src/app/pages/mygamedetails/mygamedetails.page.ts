@@ -6,21 +6,24 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EventService } from 'src/app/services/EventService';
 
 @Component({
-  selector: 'app-contest',
-  templateUrl: 'contest.page.html',
-  styleUrls: ['contest.page.scss'],
+  selector: 'app-mygamedetails',
+  templateUrl: 'mygamedetails.page.html',
+  styleUrls: ['mygamedetails.page.scss'],
 })
-export class ContestPage {
+export class MyGameDetailsPage {
   GameID = '';
   GameName = '';
   GameType = '';
+
+  SelectedAnswer = '';
+
   GameClosingTime:any = '';
 
   TotalFee:any =0;
   TotalSelected:any =0;
 
   ScripList=[];
-  scripName='';
+  scripName:any='';
 
   upDownName='';
   Option=[];
@@ -119,23 +122,23 @@ export class ContestPage {
   ContestDetails() {
     if (this.tools.isNetwork()) {
       this.tools.openLoader();
-      this.apiService.GameDetails(this.GameID).subscribe(data => {
+      this.apiService.MyGameDetails(this.GameID).subscribe(data => {
         this.tools.closeLoader();
-        this.getscrip();
+      //  this.getscrip();
 
         let res: any = data;
-        console.log(' game > ', res);
+        console.log('Mygame > ', res);
      
-        this.gameDetail = res.data.gameDetail[0];
-        this.GameName= this.gameDetail.ContestName;
-        this.GameType= this.gameDetail.ContestType;
-        this.GameClosingTime= this.gameDetail.GameEndTime;
+         this.gameDetail = res.data.gameDetail[0];
+         this.GameName= this.gameDetail.ContestName;
+         this.GameType= this.gameDetail.ContestType;
+         this.GameClosingTime= this.gameDetail.GameEndTime;
 
         this.contestList = res.data.contestFee;
-        for (let index = 0; index < this.contestList.length; index++) {
-          const element = this.contestList[index];
-          this.contestList[index].isChecked=false
-        }
+        // for (let index = 0; index < this.contestList.length; index++) {
+        //   const element = this.contestList[index];
+        //   this.contestList[index].isChecked=false
+        // }
 
       }, (error: Response) => {
         this.tools.closeLoader();
