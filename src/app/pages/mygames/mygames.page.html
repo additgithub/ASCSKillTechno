@@ -5,7 +5,7 @@
             <ion-col>
                 <ion-row class="user-info-block">
                     <ion-col size="2" class="p-0">
-                        <ion-img class="menu-img" src="assets/images/updown.png"></ion-img>
+                        <ion-img class="menu-img" src="{{game.Image}}"></ion-img>
                     </ion-col>
                     <ion-col size="7.5">
                         <ion-label class="btext">{{game.ContestName}}</ion-label>
@@ -16,7 +16,12 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-label class="graytxt">Entires Closing In :
+                        <ion-label class="graytxt">Start Time :
+                            <a style="color:#2a6193;"><b>{{game.GameStartTime}}</b></a>
+                        </ion-label>
+                    </ion-col>
+                    <ion-col>
+                        <ion-label class="graytxt">End Time :
                             <a style="color:#2a6193;"><b>{{game.GameEndTime}}</b></a>
                         </ion-label>
                     </ion-col>

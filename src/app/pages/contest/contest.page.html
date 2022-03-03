@@ -21,7 +21,19 @@
 
 <ion-content style="background: #fff">
     <ion-grid class="container mt-20">
-        <ion-label class="btext" style="display: block; font-size: 20px !important;">Entire Closing In : {{GameClosingTime}}</ion-label>
+        <!-- <ion-label class="btext" style="display: block; font-size: 20px !important;">Entire Closing In : {{GameClosingTime}}</ion-label> -->
+        <ion-row>
+            <ion-col>
+                <ion-label class="graytxt" style="display: block; font-size: 20px !important;">Start Time :
+                    <a style="color:#2a6193;"><b>{{GameStartTime}}</b></a>
+                </ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label class="graytxt" style="display: block; font-size: 20px !important;">End Time :
+                    <a style="color:#2a6193;"><b>{{GameClosingTime}}</b></a>
+                </ion-label>
+            </ion-col>
+        </ion-row>
         <div class="form-group mt-20">
             <!-- <ion-select okText="Ok" [(ngModel)]="Selstatus" [value]="Selstatus" placeholder="Select Status" cancelText="Dismiss" class="custom_select" (ionChange)="onChangeState($event.target.value)">
                 <ion-select-option *ngFor="let item of StatusList" [value]="item.Status">{{item.Status}}</ion-select-option>
@@ -91,12 +103,12 @@
 </ion-content>
 
 <ion-footer style="min-height: 70px !important;">
-    <ion-row>
-        <ion-col size="6">
+    <div class="footer_row">
+        <div class="footer_col">
             <ion-label class="btext">Total Fee : {{TotalFee| currency :'INR':'symbol':'1.2-2' }}</ion-label>
-        </ion-col>
-        <ion-col size="4">
+        </div>
+        <div class="footer_col">
             <ion-button class="btn" (click)="pay()">PAY</ion-button>
-        </ion-col>
-    </ion-row>
+        </div>
+    </div>
 </ion-footer>

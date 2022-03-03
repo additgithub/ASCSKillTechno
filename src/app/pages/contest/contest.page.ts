@@ -14,6 +14,7 @@ export class ContestPage {
   GameID = '';
   GameName = '';
   GameType = '';
+  GameStartTime:any = '';
   GameClosingTime:any = '';
 
   TotalFee:any =0;
@@ -130,6 +131,7 @@ export class ContestPage {
         this.GameName= this.gameDetail.ContestName;
         this.GameType= this.gameDetail.ContestType;
         this.GameClosingTime= this.gameDetail.GameEndTime;
+        this.GameStartTime= this.gameDetail.GameStartTime;
 
         this.contestList = res.data.contestFee;
         for (let index = 0; index < this.contestList.length; index++) {
@@ -161,9 +163,10 @@ export class ContestPage {
         if (element.isChecked) {
           chkAmt =chkAmt + parseFloat(element.GameAmt);
           console.log('chkAmt ',chkAmt) 
-          this.TotalFee=chkAmt.toFixed(2);
         }
       }
+      this.TotalFee=chkAmt.toFixed(2);
+
   }
 
   isAllChecked(event) {

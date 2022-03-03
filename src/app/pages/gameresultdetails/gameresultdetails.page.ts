@@ -15,7 +15,6 @@ export class GameResultDetailsPage {
   Selstatus:any = "LOST";
 
   user: any;
-
   
   constructor(public tools: Tools, private route: ActivatedRoute,
     public formBuilder: FormBuilder, private eventService: EventService,

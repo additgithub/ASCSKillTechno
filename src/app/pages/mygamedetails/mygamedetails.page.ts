@@ -17,6 +17,7 @@ export class MyGameDetailsPage {
 
   SelectedAnswer = '';
 
+  GameStartTime:any = '';
   GameClosingTime:any = '';
 
   TotalFee:any =0;
@@ -132,6 +133,7 @@ export class MyGameDetailsPage {
          this.gameDetail = res.data.gameDetail[0];
          this.GameName= this.gameDetail.ContestName;
          this.GameType= this.gameDetail.ContestType;
+         this.GameStartTime= this.gameDetail.GameStartTime;
          this.GameClosingTime= this.gameDetail.GameEndTime;
 
         this.contestList = res.data.contestFee;
