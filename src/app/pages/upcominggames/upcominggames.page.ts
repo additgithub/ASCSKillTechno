@@ -48,18 +48,20 @@ export class UpcomingGamesPage {
         this.gameArrayList=[];
         let date = '';
         this.gameList = res.data.GameList;
-
+        this.gameList.sort((a, b) => (a.GameDate > b.GameDate) ? 1 : -1)
         this.gameList.forEach(element => {
           console.log("date>>>",date)
           console.log("elemrnt date>>>",element.GameDate)
           if(date == ''){
+            console.log("if")
             date = element.GameDate;
             this.gameArrayList.push({'date':element.GameDate,'data':this.gameList.filter((v) => (v.GameDate === element.GameDate))})
           }else if(date != element.GameDate){
-            if(this.gameArrayList.filter((v) => (v.date != element.GameDate))){
-               date = element.GameDate;
-               this.gameArrayList.push({'date':element.GameDate,'data':this.gameList.filter((v) => (v.GameDate === element.GameDate))})
-            }
+            date = element.GameDate;
+             if(this.gameArrayList.filter((j) => (j.date != date))){
+               console.log("else In")
+                this.gameArrayList.push({'date':element.GameDate,'data':this.gameList.filter((l) => (l.GameDate === element.GameDate))})
+             }
           }
           
         });

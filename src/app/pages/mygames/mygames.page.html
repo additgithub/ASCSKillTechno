@@ -1,38 +1,41 @@
 <ion-content>
-    <ion-grid class="container mt-20" (click)="gameDetails(game.GameID)" *ngFor="let game of myGameList ;">
-        <ion-label class="content d-block">Date {{game.GameDate}}</ion-label>
-        <ion-row class="box-des">
-            <ion-col>
-                <ion-row class="user-info-block">
-                    <ion-col size="2" class="p-0">
-                        <ion-img class="menu-img" src="{{game.Image}}"></ion-img>
-                    </ion-col>
-                    <ion-col size="7.5">
-                        <ion-label class="btext">{{game.ContestName}}</ion-label>
-                    </ion-col>
-                    <ion-col size="2.5">
-                        <ion-button class="btn">View</ion-button>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-label class="graytxt">Start Time :
-                            <a style="color:#2a6193;"><b>{{game.GameStartTime}}</b></a>
-                        </ion-label>
-                    </ion-col>
-                    <ion-col>
-                        <ion-label class="graytxt">End Time :
-                            <a style="color:#2a6193;"><b>{{game.GameEndTime}}</b></a>
-                        </ion-label>
-                    </ion-col>
-                </ion-row>
-
+    <ion-grid class="container mt-20" *ngFor="let game of gameArrayList ;">
+        <ion-row>
+            <ion-col size="12">
+                <ion-label class="content d-block">Date {{game.date}}</ion-label>
             </ion-col>
-
+        </ion-row>
+        <ion-row class="box-des" *ngFor="let data of game.data ;">
+            <ion-col size="12">
+                <ion-grid style="padding: 0px  !important;">
+                    <ion-row class="user-info-block">
+                        <ion-col size="2" class="p-0">
+                            <ion-img class="menu-img" src="{{data.Image}}"></ion-img>
+                        </ion-col>
+                        <ion-col size="7.5">
+                            <ion-label class="btext">{{data.ContestName}}</ion-label>
+                        </ion-col>
+                        <ion-col size="2.5">
+                            <ion-button class="btn" (click)="gameDetails(data.GameID)">View</ion-button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label class="graytxt">Start Time :
+                                <a style="color:#2a6193;"><b>{{data.GameStartTime}}</b></a>
+                            </ion-label>
+                        </ion-col>
+                        <ion-col>
+                            <ion-label class="graytxt">End Time :
+                                <a style="color:#2a6193;"><b>{{data.GameEndTime}}</b></a>
+                            </ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
         </ion-row>
     </ion-grid>
-
-    <ion-grid class="container empty-list-box" *ngIf="myGameList?.length == 0">
+    <ion-grid class="container empty-list-box" *ngIf="gameArrayList?.length == 0">
         <ion-row class="p-0">
             <ion-col size="12" class="p-0">
                 <ion-label class="empty-list">No Data Available!</ion-label>
