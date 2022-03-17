@@ -11,11 +11,14 @@ import { EventService } from 'src/app/services/EventService';
   styleUrls: ['gameresultdetails.page.scss'],
 })
 export class GameResultDetailsPage {
-  GameID = '';
+  GameUserID = '';
   Selstatus:any = "LOST";
 
   user: any;
   
+  GameHistory= [];
+  gameDetail:any;
+
   constructor(public tools: Tools, private route: ActivatedRoute,
     public formBuilder: FormBuilder, private eventService: EventService,
     private apiService: ApiService, private router: Router) {
@@ -24,7 +27,7 @@ export class GameResultDetailsPage {
     this.route.params
       .subscribe((params) => {
         console.log('params =>', params.GameID);
-        this.GameID = params.GameID;
+        this.GameUserID = params.GameID;
       });
 
   }
@@ -35,13 +38,18 @@ export class GameResultDetailsPage {
   getGameResult() {
     if (this.tools.isNetwork()) {
       this.tools.openLoader();
-      this.apiService.GetGameHistory().subscribe(data => {
+      let postData = new FormData();
+
+      postData.append('GameUserID', this.GameUserID);
+
+      this.apiService.GetGameResult(postData).subscribe(data => {
         this.tools.closeLoader();
 
         let res: any = data;
         console.log('getGameResult > ', res);
-       // this.GameHistory = res.data.gameHistory;
-      
+        this.GameHistory = res.data.gameHistory;
+        //this.gameDetail = res.data.gameDetail[0];
+
       }, (error: Response) => {
         this.tools.closeLoader();
         console.log(error);

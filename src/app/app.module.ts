@@ -1,3 +1,4 @@
+import { FilterModelComponent } from './model/filtermodel/filtermodel.component';
 import { FormsModule } from '@angular/forms';
 import { WelcomeGuard } from './shared/welcomGuard.service';
 import { AuthGuard } from './shared/authguard.service';
@@ -26,8 +27,8 @@ import {HTTP} from "@ionic-native/http/ngx";
 import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent,FilterModelComponent],
+  entryComponents: [FilterModelComponent],
   imports: [BrowserModule,FormsModule, IonicModule.forRoot({mode:'md', scrollAssist: false}), HttpClientModule,AppRoutingModule],
   providers: [
     StatusBar,Network, EventService, AuthGuard, WelcomeGuard,Camera,ImagePicker,WebView,HTTP,File,

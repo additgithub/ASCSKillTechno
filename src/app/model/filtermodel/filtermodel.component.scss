@@ -1,0 +1,85 @@
+:host {
+    .tab-radio {
+        padding: 10px 0px;
+        display: flex;
+        overflow: auto;
+        width: 100%;
+        flex-wrap: nowrap;
+    }
+    .logo-title {
+        color: black !important;
+    }
+    .form-control {
+        color: black !important;
+    }
+    ion-modal {
+        height: 50% !important;
+        width: 90% !important;
+    }
+    .store-list-container {
+        background-color: #fff;
+        height: calc(100vh - 56px);
+        overflow-y: auto;
+    }
+    .store-list-container ion-row ion-col {
+        text-align: start;
+    }
+    
+    ion-item {
+        --min-height: 38px;
+        --padding-top: 0;
+        --padding-end: 0;
+        --padding-bottom: 0;
+        --padding-start: 8px;
+        --inner-border-width: 0px;
+        --border-width: 0px;
+    }
+
+    ion-datetime {
+        --padding-top: 0px !important;
+        --padding-bottom: 0px !important;
+    }
+
+    ion-select {
+        --padding-top: 10px;
+        --padding-end: 8px;
+        --padding-bottom: 10px;
+        --padding-start: 8px;
+    }
+
+    
+
+    .f-25 {
+        font-size: 18px !important;
+        line-height: 20px !important;
+    }
+
+    .btn_col {
+        padding: 0px !important;
+        text-align: right;
+        flex: 0 0;
+        white-space: nowrap;
+        padding-left: 5px !important;
+    }
+    .title_col {
+        padding: 0px;
+    }
+
+    .fix_col {
+        margin-bottom: 5px;
+    }
+
+    .f-15 {
+        font-size: 16px !important;
+        line-height: 14px !important;
+    }
+    .labels_row ion-col {
+        padding: 0px !important;
+        margin-top: 20px;
+        margin-bottom: 8px;
+    }
+
+    .calendar-icon {
+        bottom: 7px;
+    }
+}

@@ -1,3 +1,5 @@
+import { ModalController } from '@ionic/angular';
+import { FilterModelComponent } from './../../model/filtermodel/filtermodel.component';
 import { ApiService } from '../../services/api.service-new';
 import { Tools } from '../../shared/tools';
 import { Component } from '@angular/core';
@@ -34,7 +36,7 @@ export class ContestPage {
 
   AllContest=false;
 
-  constructor(public tools: Tools, private route: ActivatedRoute,
+  constructor(public tools: Tools, private route: ActivatedRoute,public modalController: ModalController,
     public formBuilder: FormBuilder, private eventService: EventService,
     private apiService: ApiService, private router: Router) {
       this.user = this.apiService.getUserData();
@@ -53,8 +55,13 @@ export class ContestPage {
 
   onChangeState(scripName) {
     this.scripName = scripName.target.value;
-    if(this.GameType == 'E')
-    this.getOption(this.scripName);
+    console.log("a>>",this.scripName);
+    
+    if(this.GameType == 'E'){
+      this.Option=[];
+      this.getOption(this.scripName);
+
+    }
     console.log('Select scripName ' + this.scripName);
   }
 
@@ -233,6 +240,8 @@ export class ContestPage {
         let res: any = data;
         console.log(' agent > ', res);
         this.tools.openNotification(res.message)
+
+        if(res.status)
         this.router.navigateByUrl('/home', { replaceUrl: true }); 
 
         
@@ -249,4 +258,36 @@ export class ContestPage {
     }
 
   }
+
+  async viewSelctedValue(GamePriceID){
+    var msg = ''
+    if (this.scripName == '') {
+        msg = msg + 'Select Scrip<br/>'
+      }
+      
+    if (msg != '') {
+      this.tools.openAlert(msg);
+    } else {
+      console.log("scripName >>",this.scripName)
+      console.log("Game ID >>",this.GameID)
+      console.log("GamePriceID >>",GamePriceID)
+        const modal = await this.modalController.create({
+          component: FilterModelComponent,
+          cssClass: 'change-success-modal',
+          componentProps: {ScriptID: this.scripName,GameID:this.GameID,GamePriceID:GamePriceID },
+
+        });
+        await modal.present();
+        await modal.onDidDismiss()
+          .then((data) => {
+            console.log('Selected Cart Items from Dilogs ',data);
+            if (data) {
+              // this.getOrderData(data.data[0].SelStatus,data.data[1].SelOrderType,"",
+              //   data.data[2].SelFromDate,data.data[3].SelToDate,data.data[4].SelSortBy);
+            }
+          });
+      
+    }
+  }
+ 
 }

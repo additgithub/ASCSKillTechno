@@ -180,6 +180,16 @@ dataURItoBlob(dataURI) {
     this.setHeaderData();   
     return this.http.post(environment.BaseUrl + "game/joinGame", postData, this.httpOptions);
   }
+  GameJoinUserValue(postData) {
+    this.setHeaderData();   
+    return this.http.post(environment.BaseUrl + "game/joinusercontest", postData, this.httpOptions);
+  }
+
+  MyGameEdit(postData) {
+    this.setHeaderData();   
+    return this.http.post(environment.BaseUrl + "game/contestedit", postData, this.httpOptions);
+  }
+
   MyGameList(): any {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'game/myGame', this.httpOptions);
@@ -217,9 +227,9 @@ dataURItoBlob(dataURI) {
     return this.http.get(environment.BaseUrl + 'history/gameHistory', this.httpOptions);
   }
   
-  GetGameResult(): any {
+  GetGameResult(postData): any {
     this.setHeaderData();
-    return this.http.get(environment.BaseUrl + 'history/gameHistory', this.httpOptions);
+    return this.http.post(environment.BaseUrl + 'history/viewHistory',postData, this.httpOptions);
   }
 
 

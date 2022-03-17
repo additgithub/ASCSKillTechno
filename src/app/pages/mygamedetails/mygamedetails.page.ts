@@ -1,3 +1,5 @@
+import { FilterModelComponent } from './../../model/filtermodel/filtermodel.component';
+import { ModalController } from '@ionic/angular';
 import { ApiService } from '../../services/api.service-new';
 import { Tools } from '../../shared/tools';
 import { Component } from '@angular/core';
@@ -15,7 +17,7 @@ export class MyGameDetailsPage {
   GameName = '';
   GameType = '';
 
-  SelectedAnswer = '';
+  //SelectedAnswer = '';
 
   GameStartTime:any = '';
   GameClosingTime:any = '';
@@ -23,10 +25,7 @@ export class MyGameDetailsPage {
   TotalFee:any =0;
   TotalSelected:any =0;
 
-  ScripList=[];
-  scripName:any='';
-
-  upDownName='';
+  upDownName:any;
   Option=[];
 
   contestList=[];
@@ -37,7 +36,10 @@ export class MyGameDetailsPage {
 
   AllContest=false;
 
-  constructor(public tools: Tools, private route: ActivatedRoute,
+  isEdit=false;
+
+  isHideEdit=false;
+  constructor(public tools: Tools, private route: ActivatedRoute,public modalController: ModalController,
     public formBuilder: FormBuilder, private eventService: EventService,
     private apiService: ApiService, private router: Router) {
       this.user = this.apiService.getUserData();
@@ -54,70 +56,9 @@ export class MyGameDetailsPage {
    this.ContestDetails();
   }
 
-  onChangeState(scripName) {
-    this.scripName = scripName.target.value;
-    if(this.GameType == 'E')
-    this.getOption(this.scripName);
-    console.log('Select scripName ' + this.scripName);
-  }
-
   onChangeUpDownState(data) {
     this.upDownName = data.target.value;
     console.log('Select upDownName ' + this.upDownName);
-  }
-
-  getscrip() {
-    if (this.tools.isNetwork()) {
-      this.tools.openLoader();
-      this.apiService.GetScrip().subscribe(data => {
-        this.tools.closeLoader();
-
-        let res: any = data;
-        console.log(' agent > ', res);
-        this.ScripList = res.data.Scrip;
-        //this.ContestDetails();
-
-      }, (error: Response) => {
-        this.tools.closeLoader();
-        console.log(error);
-
-        let err: any = error;
-        this.tools.openAlertToken(err.status, err.error.message);
-      });
-
-    } else {
-      this.tools.closeLoader();
-    }
-
-  }
-
-  getOption(ScriptID) {
-    if (this.tools.isNetwork()) {
-      this.tools.openLoader();
-      this.apiService.GetOption(this.GameID,ScriptID).subscribe(data => {
-        this.tools.closeLoader();
-
-        let res: any = data;
-        console.log(' agent > ', res);
-        if(res.data?.Option){
-          this.Option = res.data.Option;
-        }else{
-          this.Option=[];
-          this.tools.openNotification(res.message)
-        }
-
-      }, (error: Response) => {
-        this.tools.closeLoader();
-        console.log(error);
-
-        let err: any = error;
-        this.tools.openAlertToken(err.status, err.error.message);
-      });
-
-    } else {
-      this.tools.closeLoader();
-    }
-
   }
 
   ContestDetails() {
@@ -137,10 +78,11 @@ export class MyGameDetailsPage {
          this.GameClosingTime= this.gameDetail.GameEndTime;
 
         this.contestList = res.data.contestFee;
-        // for (let index = 0; index < this.contestList.length; index++) {
-        //   const element = this.contestList[index];
-        //   this.contestList[index].isChecked=false
-        // }
+
+       // 2022-02-28 08:45:15    2022-03-10 09:15:00
+       this.getmiliSecond((this.gameDetail.GameDate)+" "+( this.GameClosingTime)+":00")
+
+     
 
       }, (error: Response) => {
         this.tools.closeLoader();
@@ -156,80 +98,28 @@ export class MyGameDetailsPage {
 
   }
 
-  changeItem(item){
-    console.log('items ',item)     
-     console.log('isChecked ', this.contestList.filter(item=> item.isChecked).length)
-      this.TotalSelected=this.contestList.filter(item=> item.isChecked).length;
-      var chkAmt = 0;
-      for (let k = 0; k < this.contestList.length; k++) {
-        const element = this.contestList[k];
-        if (element.isChecked) {
-          chkAmt =chkAmt + parseFloat(element.GameAmt);
-          console.log('chkAmt ',chkAmt) 
-          this.TotalFee=chkAmt.toFixed(2);
-        }
+  Save(){
+    for (let index = 0; index < this.contestList.length; index++) {
+      const element = this.contestList[index];
+      if(element.SelectedAnswer == "" || element.SelectedAnswer == 0){
+        this.tools.openNotification("Enter Value For "+"contest Fee Rs "+element.GameAmt)
+        break
+      }else{
+        console.log("this.contestList",JSON.stringify(this.contestList))
+        this.GameEdit();
+        break
       }
-  }
-
-  isAllChecked(event) {
-    console.log("Check Box >> ", event.target.checked);
-    if(event.target.checked){
-      var chkAmt = 0;
-      for (let index = 0; index < this.contestList.length; index++) {
-        const element = this.contestList[index];
-        this.contestList[index].isChecked=true;
-        chkAmt =chkAmt + parseFloat(element.GameAmt);
-          console.log('chkAmt ',chkAmt) 
-          this.TotalFee=chkAmt.toFixed(2);
-      }
-
-    }else{
-      this.TotalFee=0;
-      for (let index = 0; index < this.contestList.length; index++) {
-        const element = this.contestList[index];
-        this.contestList[index].isChecked=false;
-      }
-    }
-}
-  pay(){
-    var msg = ''
-    if (this.scripName == '') {
-        msg = msg + 'Select Scrip<br/>'
-      }
-   
-     if (this.GameType == 'E' && this.upDownName == '') {
-      msg = msg + 'Select Up-Down Value<br/>'
-    }
-    if (this.GameType == 'T' &&this.forcastvalue == '') {
-      msg = msg + 'Enter Forecast Value<br/>'
-    }
-    if(this.TotalFee == 0) {
-      msg = msg + 'Select Atlist One Contest<br />'
-   }
-   
-    if (msg != '') {
-      this.tools.openAlert(msg);
-    } else {
-      console.log("scripName >>",this.scripName)
-      console.log("upDownName >>",this.upDownName)
-      console.log("contestList >>",this.contestList)
-      console.log("forcastvalue >>",this.forcastvalue)
-      this.GameJoin();
     }
   }
     
-  GameJoin() {
+  GameEdit() {
     if (this.tools.isNetwork()) {
       this.tools.openLoader();
       let postData = new FormData();
       postData.append("GameID", this.GameID);
-      postData.append("ScriptID", this.scripName);
-      postData.append("gameJoin", JSON.stringify(this.contestList));
-      postData.append("Payment", this.TotalFee);
+      postData.append("gameedit", JSON.stringify(this.contestList));
 
-      postData.append("SelectedAnswer", this.GameType == 'T'?this.forcastvalue:this.upDownName);
-
-      this.apiService.GameJoin(postData).subscribe(data => {
+      this.apiService.MyGameEdit(postData).subscribe(data => {
         this.tools.closeLoader();
 
         let res: any = data;
@@ -251,4 +141,54 @@ export class MyGameDetailsPage {
     }
 
   }
+
+  editContest(value){
+    this.isEdit=value;
+  }
+
+  async viewSelctedValue(GamePriceID,ScriptID){
+   
+      console.log("ScriptID >>",ScriptID)
+      console.log("Game ID >>",this.GameID)
+      console.log("GamePriceID >>",GamePriceID)
+        const modal = await this.modalController.create({
+          component: FilterModelComponent,
+          cssClass: 'change-success-modal',
+          componentProps: {ScriptID: ScriptID,GameID:this.GameID,GamePriceID:GamePriceID },
+
+        });
+        await modal.present();
+        await modal.onDidDismiss()
+          .then((data) => {
+            console.log('Selected Cart Items from Dilogs ',data);
+            if (data) {
+              // this.getOrderData(data.data[0].SelStatus,data.data[1].SelOrderType,"",
+              //   data.data[2].SelFromDate,data.data[3].SelToDate,data.data[4].SelSortBy);
+            }
+          });
+  }
+
+  getmiliSecond(date){
+    var milliseconds = new Date().getTime();  
+    var _today_date = milliseconds;    
+    console.log("milliseconds _today_date>",milliseconds);
+  
+    var myDate = new Date(date);
+    var result = myDate.getTime();
+    var _schedule_date =result-900000;
+    console.log("milliseconds comp_date >",_schedule_date);
+
+    if(_schedule_date < _today_date){
+      console.log("small")
+      this.isHideEdit=true;
+    }
+    else if(_schedule_date > _today_date){
+      console.log("big")
+      this.isHideEdit=false;
+    }
+    else {
+      console.log("same")
+      this.isHideEdit=false;
+    }
+   }
 }

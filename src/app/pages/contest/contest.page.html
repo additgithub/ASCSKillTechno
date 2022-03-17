@@ -87,6 +87,13 @@
                         <ion-label class="subtxt d-block">{{contest.MaxWinner}}</ion-label>
                     </ion-col>
                 </ion-row>
+                <ion-row>
+                    <div class="text-center" style="width: 100%; margin-top: 8px;">
+                        <ion-label (click)="viewSelctedValue(contest.GamePriceID)" class="f-15" style="color: red;">* View Already Selected Value
+                            <a style="color:#2a6193;"><u><b>View</b></u></a>
+                        </ion-label>
+                    </div>
+                </ion-row>
             </ion-col>
         </ion-row>
 

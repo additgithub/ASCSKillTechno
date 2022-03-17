@@ -1,0 +1,29 @@
+<ion-content>
+    <span class="shaprator"></span>
+    <ion-grid class="container">
+        <ion-row>
+            <ion-col>
+                <ion-row class="labels_row" *ngFor="let data of UserSelectedValue ;let i=index;">
+                    <ion-col size="12">
+                        <ion-label class="d-block tiitle f-15">({{i+1}}) {{data.SelectedAnswer}}</ion-label>
+                    </ion-col>
+                </ion-row>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="container empty-list-box" *ngIf="UserSelectedValue?.length == 0">
+        <ion-row class="p-0">
+            <ion-col size="12" class="p-0">
+                <ion-label class="empty-list">No Data Available!</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<ion-footer style="min-height: 50px !important; padding: 10px !important;">
+    <ion-row class="labels_row">
+        <ion-col size="12">
+            <ion-button class="btn-red" (click)="close()">Close</ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

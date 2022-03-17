@@ -1302,3 +1302,21 @@ ion-checkbox {
 .alert-radio-label {
     color: #000 !important;
 }
+
+.change-filter-modal {
+    --height: 85%;
+    align-items: flex-end;
+}
+
+.modal-wrapper {
+    /* overflow: hidden; */
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.change-success-modal .modal-wrapper {
+    border-radius: 7px !important;
+    max-width: 300px;
+    width: 90%;
+    --height: 80%;
+    margin: 0 auto;
+}

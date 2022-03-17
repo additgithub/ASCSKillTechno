@@ -58,8 +58,11 @@
                 <ion-checkbox style="vertical-align: middle;" (ionChange)="isAllChecked($event)"></ion-checkbox>
                 <ion-label class="open-models" style="padding-left: 5px;vertical-align: middle;">Join All Contest</ion-label>
             </ion-col> -->
-            <ion-col style="text-align: center;">
+            <ion-col size="10.5" style="text-align: center;">
                 <ion-label>{{contestList.length}} Contest Selected</ion-label>
+            </ion-col>
+            <ion-col size="1.5" *ngIf="!isEdit && !isHideEdit">
+                <ion-img class="img" src="../../../assets/images/edit.png" (click)="editContest(true)"></ion-img>
             </ion-col>
         </ion-row>
 
@@ -91,35 +94,44 @@
                 </ion-row>
                 <ion-row>
                     <ion-col class="left_col form-group mt-10" size="6" style="text-align: center !important;">
-                        <ion-input Type="text" class="form-control" value="{{contest.ScriptName}}"></ion-input>
+                        <ion-input Type="text" class="form-control" [readonly]="true" value="{{contest.ScriptName}}"></ion-input>
                     </ion-col>
-                    <ion-col class="right_col form-group mt-10" size="6" style="text-align: center !important;">
-                        <ion-input type="text" class="form-control" value="{{contest.SelectedAnswer}}"></ion-input>
+                    <ion-col *ngIf="contest.ContestType =='T'" class="right_col form-group mt-10" size="6" style="text-align: center !important;">
+                        <ion-input type="text" class="form-control" [readonly]="!isEdit" [(ngModel)]="contest.SelectedAnswer" value="{{contest.SelectedAnswer}}"></ion-input>
                     </ion-col>
+
+                    <div class="form-group mt-10" *ngIf="contest.ContestType =='E'">
+                        <ion-select okText=" Ok " placeholder="Select UP-DOWN " class="custom_select " disabled="{{!isEdit}}" cancelText="Dismiss" [(ngModel)]="contest.SelectedAnswer" (ionChange)="onChangeUpDownState($event) ">
+                            <ion-select-option *ngFor="let item of contest.option " value="{{item.Optionvalue}} ">{{item.Optionvalue}}</ion-select-option>
+                        </ion-select>
+                    </div>
+                </ion-row>
+                <ion-row>
+                    <div class="text-center" style="width: 100%;">
+                        <ion-label (click)="viewSelctedValue(contest.GamePriceID,contest.ScriptID)" class="f-15" style="color: red;">* View Already Selected Value
+                            <a style="color:#2a6193;"><u><b>View</b></u></a>
+                        </ion-label>
+                    </div>
                 </ion-row>
             </ion-col>
-
         </ion-row>
 
 
     </ion-grid>
 
-    <ion-grid class="container empty-list-box" *ngIf="contestList?.length == 0">
-        <ion-row class="p-0">
-            <ion-col size="12" class="p-0">
-                <ion-label class="empty-list">No Data Available!</ion-label>
+    <ion-grid class="container empty-list-box " *ngIf="contestList?.length==0 ">
+        <ion-row class="p-0 ">
+            <ion-col size="12 " class="p-0 ">
+                <ion-label class="empty-list ">No Data Available!</ion-label>
             </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>
 
-<!-- <ion-footer style="min-height: 70px !important;">
+<ion-footer style="min-height: 70px !important; " *ngIf="isEdit ">
     <ion-row>
-        <ion-col size="6">
-            <ion-label class="btext">Total Fee : Rs {{TotalFee}}</ion-label>
-        </ion-col>
-        <ion-col size="4">
-            <ion-button class="btn" (click)="pay()">PAY</ion-button>
+        <ion-col>
+            <ion-button class="btn-blue " (click)="Save() ">SAVE</ion-button>
         </ion-col>
     </ion-row>
-</ion-footer> -->
+</ion-footer>

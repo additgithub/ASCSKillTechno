@@ -37,3 +37,9 @@ ion-col.prod_qty.right_col ion-label {
     display: block !important;
     text-align: right !important;
 }
+
+ion-button.btn {
+    min-height: 30px !important;
+    min-width: 60px !important;
+    font-size: 13px !important;
+}
