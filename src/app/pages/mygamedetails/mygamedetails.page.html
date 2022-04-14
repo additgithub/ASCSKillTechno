@@ -97,7 +97,14 @@
                         <ion-input Type="text" class="form-control" [readonly]="true" value="{{contest.ScriptName}}"></ion-input>
                     </ion-col>
                     <ion-col *ngIf="contest.ContestType =='T'" class="right_col form-group mt-10" size="6" style="text-align: center !important;">
-                        <ion-input type="text" class="form-control" [readonly]="!isEdit" [(ngModel)]="contest.SelectedAnswer" value="{{contest.SelectedAnswer}}"></ion-input>
+                        <ion-input type="text" class="form-control" placeholder="Enter Forecast Value" [readonly]="!isEdit" [(ngModel)]="contest.SelectedAnswer" value="{{contest.SelectedAnswer}}"></ion-input>
+                    </ion-col>
+
+                    <ion-col *ngIf="contest.ContestType =='R'" class="right_col form-group mt-10" size="6" style="text-align: center !important;">
+                        <ion-input type="text" class="form-control" placeholder="Enter Days Low Value" [readonly]="!isEdit" [(ngModel)]="contest.dayslow" value="{{contest.dayslow}}"></ion-input>
+                    </ion-col>
+                    <ion-col *ngIf="contest.ContestType =='R'" class="right_col form-group mt-10" size="6" style="text-align: center !important;">
+                        <ion-input type="text" class="form-control" placeholder="Enter Days High Value" [readonly]="!isEdit" [(ngModel)]="contest.dayshigh" value="{{contest.dayshigh}}"></ion-input>
                     </ion-col>
 
                     <div class="form-group mt-10" *ngIf="contest.ContestType =='E'">

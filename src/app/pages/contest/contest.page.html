@@ -51,6 +51,14 @@
             <ion-input type="text" placeholder="Enter Forecast Value" [(ngModel)]="forcastvalue" class="form-control"></ion-input>
         </div>
 
+        <div class="form-group mt-10" *ngIf="this.GameType =='R' ">
+            <ion-input type="text" placeholder="Enter Days Low Value" [(ngModel)]="dayslow" class="form-control"></ion-input>
+        </div>
+
+        <div class="form-group mt-10" *ngIf="this.GameType =='R' ">
+            <ion-input type="text" placeholder="Enter Days High Value" [(ngModel)]="dayshigh" class="form-control"></ion-input>
+        </div>
+
         <ion-row class="mt-20">
             <ion-col>
                 <ion-checkbox style="vertical-align: middle;" (ionChange)="isAllChecked($event)"></ion-checkbox>

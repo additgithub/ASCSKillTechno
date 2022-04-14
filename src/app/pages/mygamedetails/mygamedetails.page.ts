@@ -101,13 +101,27 @@ export class MyGameDetailsPage {
   Save(){
     for (let index = 0; index < this.contestList.length; index++) {
       const element = this.contestList[index];
-      if(element.SelectedAnswer == "" || element.SelectedAnswer == 0){
-        this.tools.openNotification("Enter Value For "+"contest Fee Rs "+element.GameAmt)
-        break
-      }else{
-        console.log("this.contestList",JSON.stringify(this.contestList))
-        this.GameEdit();
-        break
+
+      if(this.GameType !='R'){
+        if(element.SelectedAnswer == "" || element.SelectedAnswer == 0){
+          this.tools.openNotification("Enter Value For "+"contest Fee Rs "+element.GameAmt)
+          break
+        }else{
+          console.log("this.contestList",JSON.stringify(this.contestList))
+          this.GameEdit();
+          break
+        }
+      }else if(this.GameType =='R') {
+        
+        if(element.dayslow == "" || element.dayshigh == ""){
+          this.tools.openNotification("Enter Value For "+"contest Fee Rs "+element.GameAmt)
+          break
+        }else{
+          console.log("this.contestList",JSON.stringify(this.contestList))
+          element.SelectedAnswer = element.dayslow+" - "+ element.dayshigh
+          this.GameEdit();
+          break
+        }
       }
     }
   }
@@ -121,11 +135,13 @@ export class MyGameDetailsPage {
 
       this.apiService.MyGameEdit(postData).subscribe(data => {
         this.tools.closeLoader();
-
         let res: any = data;
         console.log(' agent > ', res);
+        if(res.status){
+          this.router.navigateByUrl('/home', { replaceUrl: true }); 
+        }
+       
         this.tools.openNotification(res.message)
-        this.router.navigateByUrl('/home', { replaceUrl: true }); 
 
         
       }, (error: Response) => {

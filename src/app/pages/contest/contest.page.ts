@@ -36,6 +36,11 @@ export class ContestPage {
 
   AllContest=false;
 
+
+  dayslow='';
+  dayshigh='';
+
+
   constructor(public tools: Tools, private route: ActivatedRoute,public modalController: ModalController,
     public formBuilder: FormBuilder, private eventService: EventService,
     private apiService: ApiService, private router: Router) {
@@ -208,6 +213,12 @@ export class ContestPage {
     if (this.GameType == 'T' &&this.forcastvalue == '') {
       msg = msg + 'Enter Forecast Value<br/>'
     }
+    if (this.GameType == 'R' &&this.dayslow == '') {
+      msg = msg + 'Enter Days Low Value<br/>'
+    }
+    if (this.GameType == 'R' &&this.dayshigh == '') {
+      msg = msg + 'Enter Days High Value<br/>'
+    }
     if(this.TotalFee == 0) {
       msg = msg + 'Select Atlist One Contest<br />'
    }
@@ -219,6 +230,8 @@ export class ContestPage {
       console.log("upDownName >>",this.upDownName)
       console.log("contestList >>",this.contestList)
       console.log("forcastvalue >>",this.forcastvalue)
+      console.log("dayslow >>",this.dayslow)
+      console.log("dayshigh >>",this.dayshigh)
       this.GameJoin();
     }
   }
@@ -232,7 +245,17 @@ export class ContestPage {
       postData.append("gameJoin", JSON.stringify(this.contestList));
       postData.append("Payment", this.TotalFee);
 
-      postData.append("SelectedAnswer", this.GameType == 'T'?this.forcastvalue:this.upDownName);
+     // postData.append("SelectedAnswer", this.GameType == 'T'?this.forcastvalue:this.upDownName);
+
+      if(this.GameType == 'T'){
+        postData.append("SelectedAnswer",this.forcastvalue);
+      }else if(this.GameType == 'E'){
+        postData.append("SelectedAnswer",this.upDownName);
+      }else if(this.GameType == 'R'){
+        postData.append("SelectedAnswer",this.dayslow+" - "+this.dayshigh);
+        postData.append("dayslow",this.dayslow);
+        postData.append("dayshigh",this.dayshigh);
+      }
 
       this.apiService.GameJoin(postData).subscribe(data => {
         this.tools.closeLoader();
