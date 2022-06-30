@@ -134,12 +134,13 @@ dataURItoBlob(dataURI) {
     return this.http.post(environment.BaseUrl + "auth/verify_login_otp", postData, this.httpOptions);
   }
 
-  Register(fname,lname,mobile) {
+  Register(fname,lname,mobile,refid) {
     this.setHeaderData();
     let postData = new FormData();
     postData.append("first_name", fname);
     postData.append("last_name", lname);
     postData.append("mobile_no", mobile);
+    postData.append("ReferenceID", refid);
 
     postData.append("device_id", this.device_id);
     postData.append("device_details", this.device_details);
@@ -225,6 +226,10 @@ dataURItoBlob(dataURI) {
   GetGameHistory(): any {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'history/gameHistory', this.httpOptions);
+  }
+  GetReferenceList(): any {
+    this.setHeaderData();
+    return this.http.get(environment.BaseUrl + 'auth/reference', this.httpOptions);
   }
   
   GetGameResult(postData): any {

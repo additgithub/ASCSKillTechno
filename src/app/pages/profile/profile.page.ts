@@ -31,12 +31,15 @@ export class ProfilePage {
     private router: Router, public apiService: ApiService) {
     this.user = this.apiService.getUserData();
 
+    console.log("user >>>",this.user)
     console.log("image >>>",this.user.Image)
     this.loginForm = this.formBuilder.group({
   
       fname: [this.user.first_name, [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       lname: [this.user.last_name, [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      mobile: [this.user.mobile_no, [Validators.required, Validators.maxLength(10), Validators.pattern('[0-9]+')]],
+      mobile: [this.user.mobile_no, [Validators.required, Validators.maxLength(10),
+         Validators.pattern('[0-9]+')]],
+      refname: [this.user.refrencename],
       otp: ['', [Validators.required, Validators.maxLength(6),Validators.pattern('[0-9]+')]],
 
     });

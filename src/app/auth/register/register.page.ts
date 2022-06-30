@@ -20,16 +20,21 @@ export class RegisterPage {
 
   ResOTP:any;
   DefaultOTP:any;
+
+  RefrenceList = [];
+
   constructor(public pickerCtrl: PickerController, public tools: Tools, public formBuilder: FormBuilder, private eventService: EventService, private activatedRoute: ActivatedRoute, private router: Router, public apiService: ApiService) {
     this.loginForm = this.formBuilder.group({
       fname: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       lname: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       mobile: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('[0-9]+')]],
       otp: ['', [Validators.required, Validators.maxLength(6),Validators.pattern('[0-9]+')]],
+      refid: ['', [Validators.required]],
 
     });
   }
   ionViewDidEnter() {
+    this.getRefrenceList();
   }
 
 
@@ -79,13 +84,13 @@ export class RegisterPage {
     }
   }
 
-
   register() {
 
     let fname = this.loginForm.get('fname').value;
     let lname = this.loginForm.get('lname').value;
     let mobile = this.loginForm.get('mobile').value;
     let otp = this.loginForm.get('otp').value;
+    let refid = this.loginForm.get('refid').value;
 
     var msg = ''
     if (fname == "") {
@@ -102,6 +107,9 @@ export class RegisterPage {
         msg = msg + 'Please enter a valid mobile No.<br />'
       }
     } 
+    if (refid == "") {
+      msg = msg + "Select Reference By<br />";
+    }
 
     console.log("Res OTP",this.ResOTP)
     console.log("Res OTP",otp)
@@ -116,7 +124,7 @@ export class RegisterPage {
 
       if (this.tools.isNetwork()) {
         this.tools.openLoader();
-        this.apiService.Register(lname,lname,mobile).subscribe(response => {
+        this.apiService.Register(fname,lname,mobile,refid).subscribe(response => {
           this.tools.closeLoader();
           let res: any = response;
           this.loginForm.reset();
@@ -132,5 +140,28 @@ export class RegisterPage {
         this.tools.closeLoader();
       }
     }
+  }
+
+  getRefrenceList() {
+    if (this.tools.isNetwork()) {
+      this.tools.openLoader();
+      this.apiService.GetReferenceList().subscribe(data => {
+        this.tools.closeLoader();
+        let res: any = data;
+        console.log(' reference > ', res);
+        this.RefrenceList = res.data.reference;
+
+      }, (error: Response) => {
+        this.tools.closeLoader();
+        console.log(error);
+
+        let err: any = error;
+        this.tools.openAlertToken(err.status, err.error.message);
+      });
+
+    } else {
+      this.tools.closeLoader();
+    }
+
   }
 }

@@ -66,6 +66,10 @@
                                         <!-- <ion-label *ngIf="this.loginForm.get('mobile').value.length ==10 && IsEdit" style="color:#2a6193; padding-right: 10px;" (click)="GetOTP()">GET</ion-label> -->
                                     </ion-input>
                                 </div>
+                                <div class="form-group">
+                                    <ion-input type="text" placeholder="Reference By" 
+                                    [readonly]="true" class="form-control" formControlName='refname'></ion-input>
+                                </div>
 
                                 <div class="form-group" *ngIf="IsEdit && getOTP">
                                     <ion-input type="tel" maxlength="6" class="form-control" placeholder="OTP" formControlName='otp'></ion-input>
