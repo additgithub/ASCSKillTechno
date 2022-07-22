@@ -36,11 +36,13 @@
             <ion-col>
                 <ion-row>
                     <ion-col size="1.5" class="py-0">
-                        <ion-img class="menu-img" *ngIf="trans.CRDB =='CR'" src="assets/images/up.png"></ion-img>
-                        <ion-img class="menu-img" *ngIf="trans.CRDB =='DR'" src="assets/images/down.png"></ion-img>
+                        <ion-img class="menu-img" *ngIf="trans.IconType =='Recharge'" src="assets/images/up.png"></ion-img>
+                        <ion-img class="menu-img" *ngIf="trans.IconType =='Purchase'" src="assets/images/down.png"></ion-img>
+                        <ion-img class="menu-img" *ngIf="trans.IconType =='Cancelled'" src="assets/images/cancel.png"></ion-img>
+                        <ion-img class="menu-img" *ngIf="trans.IconType =='Referal'" src="assets/images/refer.png"></ion-img>
                     </ion-col>
                     <ion-col size="7" class="left_col">
-                        <ion-label class="subtxt text-left d-block">{{trans.Title}}</ion-label>
+                        <ion-label class="subtxt text-left d-block">{{trans.remark}}</ion-label>
                         <ion-label class="subtxt text-left d-block">{{trans.PaymentDate}}</ion-label>
                     </ion-col>
                     <ion-col size="3.5" class="right_col">

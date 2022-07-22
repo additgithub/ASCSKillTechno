@@ -29,7 +29,7 @@ export class RegisterPage {
       lname: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       mobile: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('[0-9]+')]],
       otp: ['', [Validators.required, Validators.maxLength(6),Validators.pattern('[0-9]+')]],
-      refid: ['', [Validators.required]],
+      refid: [''],
 
     });
   }
@@ -107,9 +107,9 @@ export class RegisterPage {
         msg = msg + 'Please enter a valid mobile No.<br />'
       }
     } 
-    if (refid == "") {
-      msg = msg + "Select Reference By<br />";
-    }
+    // if (refid == "") {
+    //   msg = msg + "Select Reference By<br />";
+    // }
 
     console.log("Res OTP",this.ResOTP)
     console.log("Res OTP",otp)

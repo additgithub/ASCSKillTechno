@@ -12,11 +12,12 @@ import { EventService } from 'src/app/services/EventService';
 })
 export class GameResultDetailsPage {
   GameUserID = '';
-  Selstatus:any = "LOST";
+  // Selstatus:any = "LOST";
 
   user: any;
   
   GameHistory= [];
+  GameHistoryUserDetail= [];
   gameDetail:any;
 
   constructor(public tools: Tools, private route: ActivatedRoute,
@@ -48,7 +49,7 @@ export class GameResultDetailsPage {
         let res: any = data;
         console.log('getGameResult > ', res);
         this.GameHistory = res.data.gameHistory;
-        //this.gameDetail = res.data.gameDetail[0];
+        this.GameHistoryUserDetail = res.data.winerplayer;
 
       }, (error: Response) => {
         this.tools.closeLoader();

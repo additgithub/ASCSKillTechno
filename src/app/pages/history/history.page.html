@@ -32,14 +32,20 @@
                 <ion-row>
                     <ion-col class="left_col" size="6">
                         <ion-label class="subtext d-block">Contest Fee : {{hist.totalPay| currency :'INR':'symbol':'1.2-2' }}</ion-label>
-                        <ion-label class="subtext d-block">Total Players : {{hist.totalplayer}}</ion-label>
                     </ion-col>
                     <ion-col class="right_col" size="6">
+                        <ion-label class="subtext d-block">Total Players : {{hist.totalplayer}}</ion-label>
+                    </ion-col>                
+                </ion-row>
+                <ion-row >
+                    <ion-col class="left_col" size="7" >
                         <ion-label class="subtext d-block">Game Date : {{hist.GameDate}} </ion-label>
-                        <!-- <ion-label [ngClass]="{'greencolor' : Selstatus == 'Win','radcolor' : Selstatus == 'LOST' }">{{Selstatus}}</ion-label> -->
+                    </ion-col>
+                    <ion-col class="left_col" size="5" >
+                        <ion-label style="font-size: 16px !important;" [ngClass]="{'greencolor' : hist.StatusName == 'Won','radcolor' : hist.StatusName == 'Lost' || 
+                        hist.StatusName == 'Cancelled'}">{{hist.StatusName}}</ion-label>
                     </ion-col>
                 </ion-row>
-
             </ion-col>
 
         </ion-row>

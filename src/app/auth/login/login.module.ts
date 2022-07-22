@@ -13,7 +13,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    SharedModule,    FormsModule,
+    SharedModule,
+    FormsModule,
     RouterModule.forChild(routes)  ],
   declarations: [LoginPage]
 })

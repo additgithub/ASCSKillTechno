@@ -173,6 +173,11 @@ ion-list-header {
     padding: 0px 20px;
     padding-bottom: 20px;
 }
+.info{
+    --background: #2a6193;
+     color: white;
+     font-size: 18px !important;
+}
 
 .main-content {
     display: table;
@@ -250,6 +255,15 @@ ion-button {
     --background: #FF0606;
     border: 1px solid #FF0606;
     width: 100%;
+}
+
+.btn {
+    height: 30px;
+    background: #2a6193;
+    --background: #2a6193;
+    border: 1px solid #2a6193;
+    width: 100%;
+    font-size: 12px !important;
 }
 
 .btn-blue {
@@ -882,7 +896,6 @@ img.back-btn {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    padding: 5px 10px !important;
 }
 
 .box-des .left_col {
@@ -1282,21 +1295,39 @@ ion-label.subtxt {
     float: right;
 }
 
-ion-checkbox {
-    --background-checked: #2a6193 !important;
+// ion-checkbox {
+//     --background-checked: #2a6193 !important;
+//     --border-color-checked: #2a6193 !important;
+//     width: 24px;
+//     height: 24px;
+//     background: #fff !important;
+//     --checkmark-color: #fff;
+//     --border-color: #bbb3b3;
+//     padding: 0px;
+//     --border-radius: 4px;
+//     flex: 0 0 24px;
+//     max-width: 24px;
+//     margin-right: 5px;
+// }
+ion-checkbox{
+    --checkmark-color: white !important;
     --border-color-checked: #2a6193 !important;
+    --background-checked: #2a6193 !important;
+
+
+    --border-color: #2a6193 !important;
+    --background: white !important;
+
     width: 24px;
     height: 24px;
     background: #fff !important;
-    --checkmark-color: #fff;
-    --border-color: #bbb3b3;
-    padding: 0px;
-    --border-radius: 4px;
+
     flex: 0 0 24px;
     max-width: 24px;
     margin-right: 5px;
-}
+    padding: 0px;
 
+  }
 .chkbox ion-checkbox {
     margin: 0px auto !important;
 }
