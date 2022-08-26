@@ -1,8 +1,3 @@
 /www
-angular.json
-e2e/
-plugins/
 node_modules/
 platforms/
-resources/android/
-resources/ios/

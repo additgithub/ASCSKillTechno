@@ -1,0 +1,49 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-advanced-http": {
+      "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1",
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "cordova-plugin-camera": {
+      "ANDROIDX_CORE_VERSION": "1.6.+",
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "cordova-plugin-telerik-imagepicker": {
+      "ANDROID_SUPPORT_V7_VERSION": "27.+",
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "com.addit.ascskilltechno"
+    }
+  },
+  "dependent_plugins": {}
+}
