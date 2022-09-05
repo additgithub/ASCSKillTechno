@@ -21,7 +21,7 @@ export class ProfilePage {
   user: any;
 
   IsEdit=false;
-  image1: any;
+  image1: string = '';
 
   getOTP=false;
 
@@ -119,8 +119,18 @@ export class ProfilePage {
         postData.append('first_name', fname);
         postData.append('last_name', lname);
         postData.append('mobile_no', mobile);
-        postData.append('Image',this.image1);
+        // postData.append('Image',this.image1);
     
+        if (this.image1) {
+          const date = new Date().valueOf();
+          // Replace extension according to your media type
+          const imageName = date + '.jpeg';
+          // call method that creates a blob from dataUri
+          var imageBlob = this.tools.dataURItoBlobNew(this.image1);
+          // const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' })
+          postData.append('Image', imageBlob);
+        }
+
         this.tools.openLoader();
         this.apiService.SaveProfile(postData).subscribe(response => {
           this.tools.closeLoader();
@@ -172,6 +182,7 @@ export class ProfilePage {
     }
   }
 
+ 
   async selectImage(type) {
     const actionSheet = await this.actionSheetController.create({
       header: "Select Image",
@@ -199,16 +210,17 @@ export class ProfilePage {
     });
     await actionSheet.present();
   }
+
   pickImage(sourceType) {
     const options: CameraOptions = {
-      quality: 100,
+      quality: 10,
       sourceType: sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((imageData) => {
-      console.log('User Image --> ', imageData);
+      // console.log('User Image --> ', imageData);
       this.image1 = imageData;
     }, (err) => {
       console.log(err);
