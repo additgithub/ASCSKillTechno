@@ -1,0 +1,42 @@
+<ion-content>
+        <div class="form-group" style="margin: 15px !important;">
+            <ion-label>From Date</ion-label>
+            <ion-input  value="{{ FROMDATE | date: 'dd-MM-yyyy' }}" id="FD" class="form-control"> <ion-icon   name="calendar-outline"></ion-icon></ion-input>
+            <ion-popover trigger="FD" size="cover">
+                <ng-template>
+                  <ion-datetime
+                  [showDefaultButtons]="true" 
+                    presentation="date"
+                    [(ngModel)]="FROMDATE"
+                    max="{{MaxDate}}"
+                  ></ion-datetime>
+                </ng-template>
+              </ion-popover>
+        </div>
+        <div class="form-group" style="margin: 15px !important;">
+          <ion-label>To Date</ion-label>
+          <ion-input  value="{{ TODATE | date: 'dd-MM-yyyy' }}" id="TD" class="form-control">
+             <ion-icon   name="calendar-outline"></ion-icon></ion-input>
+          <ion-popover trigger="TD" size="cover">
+              <ng-template>
+                <ion-datetime
+                [showDefaultButtons]="true" 
+                  presentation="date"
+                  [(ngModel)]="TODATE"
+                  max="{{MaxDate}}"
+                ></ion-datetime>
+              </ng-template>
+            </ion-popover>
+      </div>
+
+</ion-content>
+<ion-footer style="min-height: 50px !important; padding: 10px !important;">
+    <ion-row class="labels_row">
+        <ion-col size="6">
+          <ion-button class="btn-red" (click)="close()">Close</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button class="btn-primary" (click)="filter()" >Filter</ion-button>
+      </ion-col>
+    </ion-row>
+</ion-footer>

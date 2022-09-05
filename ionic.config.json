@@ -1,9 +1,6 @@
 {
-  "name": "kushalEnterprise",
+  "name": "ASCSKillTechnoMain",
   "integrations": {
-    "capacitor": {
-      "enabled": false
-    },
     "cordova": {}
   },
   "type": "angular"

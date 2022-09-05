@@ -5,7 +5,7 @@
                 <ion-label class="content d-block">Date {{game.date}}</ion-label>
             </ion-col>
         </ion-row>
-        <ion-row class="box-des" *ngFor="let data of game.data ;">
+        <ion-row class="box-des"  [ngStyle]="{'background-color':data.ColorCode}"  *ngFor="let data of game.data ;">
             <ion-col size="12">
                 <ion-grid style="padding: 0px  !important;">
                     <ion-row class="user-info-block">

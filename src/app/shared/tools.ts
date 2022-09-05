@@ -63,7 +63,16 @@ export class Tools {
             return true;
         }
     }
-
+    dataURItoBlobNew(dataURI) {
+        const byteString = window.atob(dataURI);
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const int8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < byteString.length; i++) {
+          int8Array[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([int8Array], { type: 'image/jpeg' });
+        return blob;
+      }
 
     formatePhone(phoneNumber) {
         let phoneString = phoneNumber.replace(/[^a-zA-Z0-9]/g, '');
@@ -348,16 +357,6 @@ export class Tools {
     //               this.closeLoader();
     //             }
     //    }
-    dataURItoBlobNew(dataURI) {
-        const byteString = window.atob(dataURI);
-        const arrayBuffer = new ArrayBuffer(byteString.length);
-        const int8Array = new Uint8Array(arrayBuffer);
-        for (let i = 0; i < byteString.length; i++) {
-          int8Array[i] = byteString.charCodeAt(i);
-        }
-        const blob = new Blob([int8Array], { type: 'image/jpeg' });
-        return blob;
-      }
     dataURItoBlob(dataURI) {
         // convert base64/URLEncoded data component to raw binary data held in a string
         let byteString;

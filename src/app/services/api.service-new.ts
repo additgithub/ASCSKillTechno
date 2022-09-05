@@ -207,9 +207,9 @@ dataURItoBlob(dataURI) {
 
     return this.http.post(environment.BaseUrl + "game/Joingamedetail", postData, this.httpOptions);
   }
-  GetWalletDetails(): any {
+  GetWalletDetails(postData): any {
     this.setHeaderData();
-    return this.http.get(environment.BaseUrl + 'wallet/getWalletAmount', this.httpOptions);
+    return this.http.post(environment.BaseUrl + 'wallet/getWalletAmount',postData, this.httpOptions);
   }
   AddWalletAmt(postData) {
     this.setHeaderData();   

@@ -40,10 +40,16 @@
     padding: 10px !important;
 }
 
-.add-review-modal .modal-wrapper {
-    width: 90% !important;
-    height: 30% !important;
+.add-review-modal {
+    // width: 85% !important;
+    // height: 50% !important;
+    // margin: 8%;
+    // margin-top: 43%;
+
+    --width: 80%;
+    --height: 40%;
 }
+
 
 ion-app {
     // margin-top: env(safe-area-inset-top);
@@ -1368,10 +1374,19 @@ ion-checkbox{
     border-radius: 10px 10px 0 0 !important;
 }
 
-.change-success-modal .modal-wrapper {
-    border-radius: 7px !important;
-    max-width: 300px;
-    width: 90%;
-    --height: 80%;
-    margin: 0 auto;
+.change-success-modal  {
+    --width: 70%;
+    --height: 70%;
 }
+.wallet-filter-modal  {
+    width: 90% !important;
+    height: 30% !important;
+}
+
+ion-datetime {
+    background: #fff !important;
+}
+// ion-modal {
+//     --width: 300px;
+//     --height: 300px;
+// }

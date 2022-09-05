@@ -20,7 +20,7 @@
 
 
 <ion-content style="background: #fff">
-    <ion-row style="background: #ee6706; min-height: 250px !important;">
+    <ion-row style="background: #ee6706; min-height: 200px !important;">
         <ion-col>
             <ion-label class="text-center d-block f-15 mt-20" style="color: #fff;">Available Amount</ion-label>
             <ion-label class="btittle d-block mt-10">{{DisplayAmount| currency :'INR':'symbol':'1.2-2' }}</ion-label>
@@ -29,9 +29,19 @@
                 <ion-input type="tel" placeholder="Enter Amount" [(ngModel)]="amount" *ngIf="firstAdd" class="form-control"></ion-input>
                 <ion-button class="btn-blue mt-20" (click)="addMoney()">Add Money</ion-button>
             </div>
+            
         </ion-col>
     </ion-row>
+
+
     <ion-grid class="container mt-20">
+       
+      <ion-row>
+            <ion-button *ngIf="ShowClear =='1'"  class="btn-primary1" (click)="clear()" >Clear</ion-button>
+            <ion-icon  *ngIf="TransactionList?.length !== 0"  (click)="WalletFilter()" style="color: #2a6193;height: 40px !important;width: 17% !important;
+            margin: 0px 0px 2px auto !important;"             name="filter-outline" ></ion-icon>
+
+      </ion-row>
         <ion-row class="box-des" *ngFor="let trans of TransactionList ;">
             <ion-col>
                 <ion-row>
@@ -63,4 +73,5 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+
 </ion-content>

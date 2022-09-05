@@ -7,8 +7,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ActionSheetController, PickerController } from '@ionic/angular';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -21,11 +21,11 @@ export class ProfilePage {
   user: any;
 
   IsEdit=false;
-  image1: string = '';
+  image1: any;
 
   getOTP=false;
 
-  constructor(public pickerCtrl: PickerController, public tools: Tools, public formBuilder: FormBuilder, private eventService: EventService,
+  constructor(private _sanitizer: DomSanitizer,public pickerCtrl: PickerController, public tools: Tools, public formBuilder: FormBuilder, private eventService: EventService,
     private activatedRoute: ActivatedRoute,public actionSheetController: ActionSheetController, 
     private camera: Camera,
     private router: Router, public apiService: ApiService) {
@@ -120,7 +120,6 @@ export class ProfilePage {
         postData.append('last_name', lname);
         postData.append('mobile_no', mobile);
         // postData.append('Image',this.image1);
-    
         if (this.image1) {
           const date = new Date().valueOf();
           // Replace extension according to your media type
@@ -128,8 +127,10 @@ export class ProfilePage {
           // call method that creates a blob from dataUri
           var imageBlob = this.tools.dataURItoBlobNew(this.image1);
           // const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' })
-          postData.append('Image', imageBlob);
+          postData.append('Image', imageBlob,imageName);
         }
+        
+        console.log('img in api >>',this.image1);
 
         this.tools.openLoader();
         this.apiService.SaveProfile(postData).subscribe(response => {
@@ -161,7 +162,7 @@ export class ProfilePage {
     if (event.target.files && event.target.files.length > 0) {
       
       const file = event.target.files[0];
-     // this.imageName=file.name;
+    //  this.imageName=file.name;
 
       const fileSizeInKB = Math.round(file.size / 1024);
       if (fileSizeInKB >= 5012) {
@@ -171,9 +172,11 @@ export class ProfilePage {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       if(isEdit){
+        console.log(' Image if edit--> ');
       //  this.isPostImageEdit = true;
-        //this.PEditControl.post_image.setValue(file);
+        // this.PEditControl.post_image.setValue(file);
       }else{
+        console.log(' Image else --> ');
         //this.isPostImageAdd = true;
         //this.control.post_image.setValue(file);
        this.image1=file;
@@ -182,7 +185,6 @@ export class ProfilePage {
     }
   }
 
- 
   async selectImage(type) {
     const actionSheet = await this.actionSheetController.create({
       header: "Select Image",
@@ -210,17 +212,17 @@ export class ProfilePage {
     });
     await actionSheet.present();
   }
-
   pickImage(sourceType) {
     const options: CameraOptions = {
-      quality: 10,
+      quality: 100,
       sourceType: sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((imageData) => {
-      // console.log('User Image --> ', imageData);
+      console.log('User Image --> ', imageData);
+      
       this.image1 = imageData;
     }, (err) => {
       console.log(err);
